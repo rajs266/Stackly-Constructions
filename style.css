@@ -137,7 +137,6 @@ input:focus,textarea:focus{outline:none;border-color:rgba(77,212,255,.55);box-sh
   .hero-grid,.about-grid,.contact-layout,.grid-2,.footer-shell{grid-template-columns:1fr;display:grid}
   .grid-3,.hero-stats,.highlight-strip,.form-grid{grid-template-columns:1fr}
   
-  
   .nav-links{
     display:none;
     position:absolute;

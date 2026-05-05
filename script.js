@@ -11,24 +11,38 @@
   const navWrap = document.querySelector('.nav-wrap');
 
   const toggleMenu = () => {
-    const open = navLinks.classList.toggle('open');
-    menuBtn.textContent = open ? '✕' : '☰';
-    menuBtn.setAttribute('aria-expanded', String(open));
+    const isOpen = navLinks.classList.toggle('open');
+    menuBtn.textContent = isOpen ? '✕' : '☰';
+    menuBtn.setAttribute('aria-expanded', String(isOpen));
+    
+    if (isOpen) {
+      navLinks.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    } else {
+      navLinks.style.display = '';
+      document.body.style.overflow = '';
+    }
   };
 
   menuBtn.addEventListener('click', toggleMenu);
 
-  navLinks.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
-    navLinks.classList.remove('open');
-    menuBtn.textContent = '☰';
-    menuBtn.setAttribute('aria-expanded', 'false');
-  }));
-
-  document.addEventListener('click', (e) => {
-    if (!navWrap.contains(e.target) && navLinks.classList.contains('open')) {
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
       navLinks.classList.remove('open');
+      navLinks.style.display = '';
       menuBtn.textContent = '☰';
       menuBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    if (navLinks.classList.contains('open') && !navWrap.contains(e.target)) {
+      navLinks.classList.remove('open');
+      navLinks.style.display = '';
+      menuBtn.textContent = '☰';
+      menuBtn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
     }
   });
 
@@ -57,17 +71,19 @@
   document.querySelectorAll('.reveal').forEach(item => observer.observe(item));
 
   const form = document.getElementById('contactForm');
-  form.addEventListener('submit', (event) => {
-    if (!form.checkValidity()) return;
-    event.preventDefault();
-    const btn = form.querySelector('button[type="submit"]');
-    const text = btn.textContent;
-    btn.textContent = 'Submitted';
-    btn.disabled = true;
-    setTimeout(() => {
-      form.reset();
-      btn.disabled = false;
-      btn.textContent = text;
-    }, 1500);
-  });
+  if (form) {
+    form.addEventListener('submit', (event) => {
+      if (!form.checkValidity()) return;
+      event.preventDefault();
+      const btn = form.querySelector('button[type="submit"]');
+      const text = btn.textContent;
+      btn.textContent = 'Submitted';
+      btn.disabled = true;
+      setTimeout(() => {
+        form.reset();
+        btn.disabled = false;
+        btn.textContent = text;
+      }, 1500);
+    });
+  }
 })();
