@@ -46,7 +46,7 @@ button,input,textarea{font:inherit;color:inherit}
 .btn-ghost:hover{background:rgba(255,255,255,.12);box-shadow:0 18px 36px rgba(0,0,0,.18)}
 
 .header{position:sticky;top:0;z-index:1000;padding-top:.35rem}
-.nav-wrap{position:relative;width:min(calc(100% - 1rem),1200px);margin:auto;overflow:hidden;border-radius:1.4rem;border:1px solid rgba(255,255,255,.08);background:rgba(7,18,32,.10);backdrop-filter:blur(6px);box-shadow:0 18px 40px rgba(0,0,0,.24)}
+.nav-wrap{position:relative;width:min(calc(100% - 1rem),1200px);margin:auto;overflow:visible;border-radius:1.4rem;border:1px solid rgba(255,255,255,.08);background:rgba(7,18,32,.10);backdrop-filter:blur(6px);box-shadow:0 18px 40px rgba(0,0,0,.24)}
 .nav-wrap--video{border-color:rgba(0,255,214,.22);box-shadow:0 0 0 1px rgba(255,209,102,.08),0 18px 40px rgba(0,0,0,.24)}
 .nav-video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:none;z-index:0}
 .nav-video.active{display:block;filter:saturate(1.75) contrast(1.16) brightness(.82) hue-rotate(-10deg)}
@@ -55,12 +55,15 @@ button,input,textarea{font:inherit;color:inherit}
 .nav{position:relative;z-index:2;display:flex;align-items:center;justify-content:space-between;gap:1rem;min-height:84px;padding:0 1rem}
 .brand{display:flex;align-items:center;gap:.8rem;min-width:0}
 .brand img{width:176px;height:auto;border-radius:.8rem;padding:.3rem .4rem;background:rgba(255,255,255,.96);box-shadow:0 12px 24px rgba(0,0,0,.18)}
+
+/* ── Desktop Nav Links ── */
 .nav-links{display:flex;align-items:center;gap:1.4rem}
 .nav-links a{position:relative;font-size:clamp(.9rem,.84rem + .2vw,1rem);color:#e7f4ff;font-weight:700;transition:color .2s ease,transform .2s ease}
 .nav-links a::after{content:"";position:absolute;left:0;bottom:-7px;width:100%;height:2px;background:linear-gradient(90deg,#4dd4ff,#ff9a3d,#ff5fa2);transform:scaleX(0);transform-origin:left;transition:transform .22s ease}
 .nav-links a:hover{color:#fff;transform:translateY(-2px)}
 .nav-links a:hover::after{transform:scaleX(1)}
-.menu-btn{display:none;width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);color:#fff;cursor:pointer}
+
+.menu-btn{display:none;width:46px;height:46px;border-radius:50%;border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.06);color:#fff;cursor:pointer;font-size:1.3rem;place-items:center}
 
 .hero{padding:1rem 0 2rem}
 .hero-shell{position:relative;width:min(calc(100% - 1rem),1200px);margin:0 auto;border-radius:2rem;overflow:hidden;border:1px solid rgba(255,255,255,.08);box-shadow:0 22px 50px rgba(0,0,0,.32);background:linear-gradient(120deg,rgba(7,18,32,.80),rgba(7,24,46,.52) 38%,rgba(12,43,78,.30) 100%),radial-gradient(circle at 18% 24%, rgba(255,122,92,.18), transparent 22%),radial-gradient(circle at 84% 18%, rgba(75,192,255,.18), transparent 20%),radial-gradient(circle at 82% 84%, rgba(255,226,102,.12), transparent 20%), url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat}
@@ -133,40 +136,61 @@ input:focus,textarea:focus{outline:none;border-color:rgba(77,212,255,.55);box-sh
 .quality-video-box{min-height:280px;border-radius:1.5rem;overflow:hidden;border:1px solid rgba(255,255,255,.08);box-shadow:var(--shadow);background:linear-gradient(180deg,rgba(8,21,38,.16),rgba(8,21,38,.24));position:relative}
 .quality-video{width:100%;height:100%;min-height:280px;object-fit:cover;display:block;filter:saturate(1.2) contrast(1.05) brightness(.92)}
 
+/* ════════════════════════════════
+   MOBILE  ≤ 960px
+   ════════════════════════════════ */
 @media (max-width:960px){
-  .hero-grid,.about-grid,.contact-layout,.grid-2,.footer-shell{grid-template-columns:1fr;display:grid}
-  .grid-3,.hero-stats,.highlight-strip,.form-grid{grid-template-columns:1fr}
-  
+
+  /* Layout resets */
+  .hero-grid,
+  .about-grid,
+  .contact-layout,
+  .grid-2,
+  .footer-shell{grid-template-columns:1fr}
+
+  .grid-3,
+  .hero-stats,
+  .highlight-strip,
+  .form-grid{grid-template-columns:1fr}
+
+  /* ── Nav: hide links by default on mobile ── */
   .nav-links{
-    display:none;
+    display:none;                          /* ← KEY FIX */
     position:absolute;
     left:.8rem;
     right:.8rem;
     top:calc(100% + .45rem);
-    padding:2rem;
-    background:rgba(7,18,32,0.96);
-    border:1px solid rgba(255,255,255,0.12);
-    border-radius:1.2rem;
-    box-shadow:0 24px 50px rgba(0,0,0,.35);
     flex-direction:column;
     align-items:center;
     gap:1.5rem;
-    z-index: 1001;
+    padding:2rem;
+    background:rgba(7,18,32,0.98);
+    border:1px solid rgba(255,255,255,0.15);
+    border-radius:1.2rem;
+    box-shadow:0 24px 50px rgba(0,0,0,.6);
+    z-index:9999;
   }
-  
+
+  /* When JS adds .open — show the menu */
   .nav-links.open{
-    display:flex !important;
+    display:flex;
   }
-  
+
+  /* Show hamburger button */
   .menu-btn{
-    display:grid !important;
+    display:grid;
     place-items:center;
-    z-index: 1002;
   }
-  
+
+  /* Other mobile tweaks */
   .brand img{width:150px}
   .hero-visual{min-height:360px}
-  .float-card{position:relative;top:auto;right:auto;left:auto;bottom:auto;max-width:none;margin-top:1rem}
+  .float-card{
+    position:relative;
+    top:auto;right:auto;left:auto;bottom:auto;
+    max-width:none;
+    margin-top:1rem;
+  }
   .hero-actions{margin-bottom:1.2rem}
   .footer-shell{justify-content:flex-start}
 }
