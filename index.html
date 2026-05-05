@@ -8,10 +8,63 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+
   <div class="loader" id="loader">
     <div class="loader-box">
       <div class="loader-ring" aria-hidden="true"></div>
       <p>Building Excellence</p>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="loginBackdrop" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+    <div class="modal" id="loginModal">
+      <button class="modal-close" id="modalClose" aria-label="Close login">✕</button>
+
+      <div class="modal-logo" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M12 2a5 5 0 1 1 0 10A5 5 0 0 1 12 2zm0 12c5.33 0 8 2.67 8 4v2H4v-2c0-1.33 2.67-4 8-4z"/></svg>
+      </div>
+
+      <h2 id="loginTitle">Welcome back</h2>
+      <p class="modal-sub">Sign in to your Stackly account</p>
+
+      <form class="login-form" id="loginForm" novalidate>
+
+        <div class="login-field">
+          <label for="loginEmail">Email address</label>
+          <input
+            type="email"
+            id="loginEmail"
+            name="loginEmail"
+            placeholder="official@company.com"
+            autocomplete="email"
+          />
+          <span class="field-error" id="emailErr">Please enter a valid email address.</span>
+        </div>
+
+        <div class="login-field">
+          <label for="loginPassword">Password</label>
+          <input
+            type="password"
+            id="loginPassword"
+            name="loginPassword"
+            placeholder="Enter your password"
+            autocomplete="current-password"
+          />
+          <span class="field-error" id="passErr">Password must be at least 6 characters.</span>
+        </div>
+
+        <div class="login-form-footer">
+          <label style="display:flex;align-items:center;gap:.4rem;font-size:.83rem;color:#8aacc8;cursor:pointer">
+            <input type="checkbox" id="rememberMe" style="width:auto;min-height:auto;accent-color:#4dd4ff" />
+            Remember me
+          </label>
+          <a href="#contact">Forgot password?</a>
+        </div>
+
+        <button class="btn-login-submit" type="submit" id="loginSubmitBtn">Sign In</button>
+
+        <p class="login-divider">Don't have an account? <a href="#contact" style="color:#4dd4ff;font-weight:700;">Contact us</a></p>
+      </form>
     </div>
   </div>
 
@@ -22,29 +75,36 @@
       </video>
       <div class="nav-overlay" id="navOverlay"></div>
 
-      <div class="nav">
+      <nav class="nav">
         <a class="brand" href="#home" aria-label="Stackly home">
           <img src="./assets/logo-placeholder.png" alt="Stackly logo" width="346" height="100" loading="eager" decoding="async" />
         </a>
 
-        <nav class="nav-links" id="navLinks">
+        <div class="nav-links" id="navLinks">
           <a href="#about">About Us</a>
           <a href="#services">Our Services</a>
           <a href="#projects">Portfolio</a>
           <a href="#contact">Contact Us</a>
-        </nav>
+        </div>
 
-        <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
-      </div>
+        <div class="nav-right">
+          <button class="btn-login" id="openLoginBtn" type="button" aria-label="Login to your account">
+            <svg viewBox="0 0 24 24"><path d="M12 2a5 5 0 1 1 0 10A5 5 0 0 1 12 2zm0 12c5.33 0 8 2.67 8 4v2H4v-2c0-1.33 2.67-4 8-4z"/></svg>
+            <span>Login</span>
+          </button>
+          <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
+        </div>
+      </nav>
     </div>
   </header>
 
   <main id="home">
+
     <section class="hero">
       <div class="hero-shell">
         <div class="hero-grid">
           <div class="reveal">
-            <span class="badge">Master Builders & Engineers</span>
+            <span class="badge">Master Builders &amp; Engineers</span>
             <h1>Constructing landmark structures with architectural integrity.</h1>
             <p>Stackly specializes in comprehensive construction management, structural engineering, and high-end project delivery for urban developments and industrial facilities.</p>
             <div class="hero-actions">
@@ -55,7 +115,7 @@
             <div class="hero-stats">
               <article class="hero-stat"><strong>180+</strong><span>Landmarks completed</span></article>
               <article class="hero-stat"><strong>25+</strong><span>Years of industry expertise</span></article>
-              <article class="hero-stat"><strong>24/7</strong><span>Site supervision & safety</span></article>
+              <article class="hero-stat"><strong>24/7</strong><span>Site supervision &amp; safety</span></article>
             </div>
           </div>
 
@@ -191,11 +251,11 @@
           <p class="copy">Please provide your project details below. Our technical team will review and contact you shortly.</p>
           <form id="contactForm">
             <div class="form-grid">
-              <div class="field"><label for="name">Full Name</label><input id="name" name="name" type="text" required placeholder="Project lead or contact name" /></div>
-              <div class="field"><label for="company">Organization</label><input id="company" name="company" type="text" required placeholder="Company or Firm name" /></div>
-              <div class="field"><label for="email">Work Email</label><input id="email" name="email" type="email" required placeholder="official@company.com" /></div>
-              <div class="field"><label for="phone">Contact Number</label><input id="phone" name="phone" type="tel" required placeholder="+91 XXXXX XXXXX" /></div>
-              <div class="field full"><label for="message">Project Requirements</label><textarea id="message" name="message" required placeholder="Describe the scale and type of construction project"></textarea></div>
+              <div class="field"><label for="cName">Full Name</label><input id="cName" name="name" type="text" required placeholder="Project lead or contact name" /></div>
+              <div class="field"><label for="cCompany">Organization</label><input id="cCompany" name="company" type="text" required placeholder="Company or Firm name" /></div>
+              <div class="field"><label for="cEmail">Work Email</label><input id="cEmail" name="email" type="email" required placeholder="official@company.com" /></div>
+              <div class="field"><label for="cPhone">Contact Number</label><input id="cPhone" name="phone" type="tel" required placeholder="+91 XXXXX XXXXX" /></div>
+              <div class="field full"><label for="cMessage">Project Requirements</label><textarea id="cMessage" name="message" required placeholder="Describe the scale and type of construction project"></textarea></div>
             </div>
             <div style="display:flex;gap:.8rem;flex-wrap:wrap;">
               <button class="btn btn-primary" type="submit">Submit Details</button>
