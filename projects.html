@@ -1,0 +1,157 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="View Stackly's portfolio of 450+ completed projects including commercial towers, residential complexes, and infrastructure." />
+  <title>Portfolio | Stackly Construction</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="loader" id="loader">
+    <div class="loader-box">
+      <div class="loader-ring" aria-hidden="true"></div>
+      <p>Building Excellence</p>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="loginBackdrop" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+    <div class="modal" id="loginModal">
+      <button class="modal-close" id="modalClose" aria-label="Close login">&times;</button>
+      <div class="modal-logo" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M12 2a5 5 0 1 1 0 10A5 5 0 0 1 12 2zm0 12c5.33 0 8 2.67 8 4v2H4v-2c0-1.33 2.67-4 8-4z"/></svg>
+      </div>
+      <h2 id="loginTitle">Welcome back</h2>
+      <p class="modal-sub">Sign in to your Stackly account</p>
+      <form class="login-form" id="loginForm" novalidate>
+        <div class="login-field">
+          <label for="loginEmail">Email address</label>
+          <input type="email" id="loginEmail" name="loginEmail" placeholder="official@company.com" autocomplete="email" />
+          <span class="field-error" id="emailErr">Please enter a valid email address.</span>
+        </div>
+        <div class="login-field">
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" name="loginPassword" placeholder="Enter your password" autocomplete="current-password" />
+          <span class="field-error" id="passErr">Password must be at least 6 characters.</span>
+        </div>
+        <div class="login-form-footer">
+          <label style="display:flex;align-items:center;gap:.4rem;font-size:.83rem;color:#8aacc8;cursor:pointer">
+            <input type="checkbox" id="rememberMe" style="width:auto;min-height:auto;accent-color:#4dd4ff" />
+            Remember me
+          </label>
+          <a href="contact.html">Forgot password?</a>
+        </div>
+        <button class="btn-login-submit" type="submit" id="loginSubmitBtn">Sign In</button>
+        <p class="login-divider">Don't have an account? <a href="contact.html" style="color:#4dd4ff;font-weight:700;">Contact us</a></p>
+      </form>
+    </div>
+  </div>
+
+  <header class="header">
+    <div class="nav-wrap nav-wrap--video">
+      <video class="nav-video" id="navVideo" autoplay muted loop playsinline aria-hidden="true">
+        <source src="./assets/nav-video.mp4" type="video/mp4" />
+      </video>
+      <div class="nav-overlay" id="navOverlay"></div>
+      <nav class="nav">
+        <a class="brand" href="index.html" aria-label="Stackly home">
+          <img src="./assets/logo-placeholder.webp" alt="Stackly logo" width="346" height="100" loading="eager" decoding="async" />
+        </a>
+        <div class="nav-links" id="navLinks">
+          <a href="index.html">Home</a>
+          <a href="about.html">About Us</a>
+          <a href="services.html">Our Services</a>
+          <a href="projects.html" class="active">Portfolio</a>
+          <a href="contact.html">Contact Us</a>
+        </div>
+        <div class="nav-right">
+          <button class="btn-login" id="openLoginBtn" type="button" aria-label="Login to your account">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 12c5.33 0 8 2.67 8 4v2H4v-2c0-1.33 2.67-4 8-4z"/></svg>
+            <span>Login</span>
+          </button>
+          <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section" style="padding-top: 2rem;">
+      <div class="container section-shell reveal">
+        <div class="section-inner">
+          <span class="badge">Our Work</span>
+          <h1 class="title">450+ Landmark Projects Across Tamil Nadu</h1>
+          <p class="copy">From luxury apartments to highway bridges, every project reflects our commitment to quality, safety and timely delivery.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="container grid-2">
+        <article class="project-card reveal">
+          <div class="project-photo" aria-label="Completed commercial tower"></div>
+          <h3>Metropolitan Business Park - Chennai</h3>
+          <p class="copy"><strong>Value:</strong> 120 Crores | <strong>Duration:</strong> 24 months | <strong>Area:</strong> 5 lakh sqft<br>A multi-phased commercial development featuring sustainable energy systems, 2000 car parking, food court, and Grade-A office space. LEED Gold certified. Completed in 2024.</p>
+          <a class="btn btn-ghost" href="404.html" rel="noopener noreferrer">View Project Specs</a>
+        </article>
+        <article class="project-card reveal">
+          <div class="site-photo" aria-label="Ongoing high-rise development"></div>
+          <h3>Skyscape Residency - Dindigul</h3>
+          <p class="copy"><strong>Value:</strong> 45 Crores | <strong>Duration:</strong> 18 months | <strong>Units:</strong> 120<br>12-story luxury apartment with swimming pool, gym, club house, children's play area. 100% sold out before completion. RERA approved. Delivered in 2023.</p>
+          <a class="btn btn-secondary" href="contact.html">Inquire for Similar Projects</a>
+        </article>
+        <article class="project-card reveal">
+          <img src="./assets/project-detail.webp" alt="NH-44 Bridge" loading="lazy" style="width:100%;height:220px;object-fit:cover;border-radius:1.2rem;margin-bottom:1rem;border:1px solid rgba(255,255,255,.08);">
+          <h3>NH-44 Bridge - Trichy</h3>
+          <p class="copy"><strong>Value:</strong> 180 Crores | <strong>Duration:</strong> 30 months | <strong>Length:</strong> 1.2km<br>6-lane bridge over Cauvery river. Pile foundation 40m deep. Completed for NHAI with zero accidents record. Load tested for 100-ton vehicles.</p>
+          <a class="btn btn-ghost" href="404.html" rel="noopener noreferrer">Technical Details</a>
+        </article>
+        <article class="project-card reveal">
+          <img src="./assets/coding.webp" alt="Textile Factory" loading="lazy" style="width:100%;height:220px;object-fit:cover;border-radius:1.2rem;margin-bottom:1rem;border:1px solid rgba(255,255,255,.08);">
+          <h3>Textile Export Factory - Karur</h3>
+          <p class="copy"><strong>Value:</strong> 35 Crores | <strong>Duration:</strong> 10 months | <strong>Area:</strong> 2 lakh sqft<br>Manufacturing unit with EOT crane, boiler house, ETP plant, 3-phase power. Export quality construction for German client. Completed in 2024.</p>
+          <a class="btn btn-secondary" href="contact.html">Get Quote</a>
+        </article>
+        <article class="project-card reveal">
+          <img src="./assets/photo-1486406146926-c627a92ad1ab.webp" alt="IT Park" onerror="this.onerror=null;this.src='./assets/project-commercial.webp'" loading="lazy" style="width:100%;height:220px;object-fit:cover;border-radius:1.2rem;margin-bottom:1rem;border:1px solid rgba(255,255,255,.08);">
+          <h3>Tech Valley IT Park - Coimbatore</h3>
+          <p class="copy"><strong>Value:</strong> 200 Crores | <strong>Duration:</strong> 36 months | <strong>Area:</strong> 10 acres<br>8 towers, 2 million sqft workspace, food court, auditorium, 3000 car parking. Serviced for TCS, Infosys, Wipro. Completed in 2022.</p>
+          <a class="btn btn-ghost" href="404.html" rel="noopener noreferrer">Download Brochure</a>
+        </article>
+        <article class="project-card reveal">
+          <img src="./assets/inti.webp" alt="Hospital" loading="lazy" style="width:100%;height:220px;object-fit:cover;border-radius:1.2rem;margin-bottom:1rem;border:1px solid rgba(255,255,255,.08);">
+          <h3>City Care Hospital - Madurai</h3>
+          <p class="copy"><strong>Value:</strong> 60 Crores | <strong>Duration:</strong> 20 months | <strong>Beds:</strong> 200<br>Multi-speciality hospital with 5 OTs, ICU, emergency ward, medical gas pipeline, fire safety systems. NABH accredited. Completed in 2023.</p>
+          <a class="btn btn-secondary" href="contact.html">Healthcare Projects</a>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-shell">
+      <a href="index.html" class="footer-logo">
+        <img src="./assets/logo-placeholder.webp" alt="Stackly logo" width="180" height="52" loading="lazy" />
+      </a>
+      <p>&copy; 2026 Stackly Constructions. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="about.html">Company</a>
+        <a href="services.html">Services</a>
+        <a href="projects.html">Work</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="social-links footer-socials-added">
+        <a href="404.html" class="social-icon" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.6 1.6-1.6h1.7V3.8c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.4V10H8v3h2.1v8h3.4Z"/></svg></a>
+        <a href="404.html" class="social-icon" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7.5 3h9A4.5 4.5 0 0 1 21 7.5v9a4.5 4.5 0 0 1-4.5 4.5h-9A4.5 4.5 0 0 1 3 16.5v-9A4.5 4.5 0 0 1 7.5 3Zm0 1.8A2.7 2.7 0 0 0 4.8 7.5v9a2.7 2.7 0 0 0 2.7 2.7h9a2.7 2.7 0 0 0 2.7-2.7v-9a2.7 2.7 0 0 0-2.7-2.7h-9ZM12 7.8A4.2 4.2 0 1 1 7.8 12 4.2 4.2 0 0 1 12 7.8Z"/></svg></a>
+        <a href="404.html" class="social-icon" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.9 3H22l-6.77 7.74L23 21h-6.1l-4.78-6.25L6.66 21H3.54l7.24-8.27L1.5 3h6.25l4.32 5.71L18.9 3Zm-1.07 16.2h1.69L6.84 4.7H5.03L17.83 19.2Z"/></svg></a>
+        <a href="404.html" class="social-icon" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M6.94 8.98H3.75V20h3.19V8.98ZM5.34 4A1.84 1.84 0 1 0 5.3 7.68 1.84 1.84 0 0 0 5.34 4ZM20.25 13.68c0-3.12-1.67-4.57-3.9-4.57a3.36 3.36 0 0 0-3.03 1.67h-.04v-1.8h-3.06V20h3.19v-5.45c0-1.44.27-2.84 2.06-2.84 1.76 0 1.78 1.65 1.78 2.93V20h3.2v-6.32h-.2Z"/></svg></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

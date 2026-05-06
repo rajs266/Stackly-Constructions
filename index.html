@@ -1,11 +1,14 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Stackly is a premier construction firm specializing in commercial, residential, and industrial developments with a focus on precision and excellence." />
+  <meta name="description" content="Stackly is a premier construction firm specializing in commercial, residential, and industrial developments." />
   <title>Stackly Construction | Building Excellence</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -16,82 +19,28 @@
     </div>
   </div>
 
-  <div class="modal-backdrop" id="loginBackdrop" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
-    <div class="modal" id="loginModal">
-      <button class="modal-close" id="modalClose" aria-label="Close login">✕</button>
-
-      <div class="modal-logo" aria-hidden="true">
-        <svg viewBox="0 0 24 24"><path d="M12 2a5 5 0 1 1 0 10A5 5 0 0 1 12 2zm0 12c5.33 0 8 2.67 8 4v2H4v-2c0-1.33 2.67-4 8-4z"/></svg>
-      </div>
-
-      <h2 id="loginTitle">Welcome back</h2>
-      <p class="modal-sub">Sign in to your Stackly account</p>
-
-      <form class="login-form" id="loginForm" novalidate>
-
-        <div class="login-field">
-          <label for="loginEmail">Email address</label>
-          <input
-            type="email"
-            id="loginEmail"
-            name="loginEmail"
-            placeholder="official@company.com"
-            autocomplete="email"
-          />
-          <span class="field-error" id="emailErr">Please enter a valid email address.</span>
-        </div>
-
-        <div class="login-field">
-          <label for="loginPassword">Password</label>
-          <input
-            type="password"
-            id="loginPassword"
-            name="loginPassword"
-            placeholder="Enter your password"
-            autocomplete="current-password"
-          />
-          <span class="field-error" id="passErr">Password must be at least 6 characters.</span>
-        </div>
-
-        <div class="login-form-footer">
-          <label style="display:flex;align-items:center;gap:.4rem;font-size:.83rem;color:#8aacc8;cursor:pointer">
-            <input type="checkbox" id="rememberMe" style="width:auto;min-height:auto;accent-color:#4dd4ff" />
-            Remember me
-          </label>
-          <a href="#contact">Forgot password?</a>
-        </div>
-
-        <button class="btn-login-submit" type="submit" id="loginSubmitBtn">Sign In</button>
-
-        <p class="login-divider">Don't have an account? <a href="#contact" style="color:#4dd4ff;font-weight:700;">Contact us</a></p>
-      </form>
-    </div>
-  </div>
-
   <header class="header">
     <div class="nav-wrap nav-wrap--video">
       <video class="nav-video" id="navVideo" autoplay muted loop playsinline aria-hidden="true">
         <source src="./assets/nav-video.mp4" type="video/mp4" />
       </video>
       <div class="nav-overlay" id="navOverlay"></div>
-
       <nav class="nav">
-        <a class="brand" href="#home" aria-label="Stackly home">
-          <img src="./assets/logo-placeholder.png" alt="Stackly logo" width="346" height="100" loading="eager" decoding="async" />
+        <a class="brand" href="index.html" aria-label="Stackly home">
+          <img src="./assets/logo-placeholder.webp" alt="Stackly logo" width="346" height="100" loading="eager" decoding="async" />
         </a>
-
         <div class="nav-links" id="navLinks">
-          <a href="#about">About Us</a>
-          <a href="#services">Our Services</a>
-          <a href="#projects">Portfolio</a>
-          <a href="#contact">Contact Us</a>
+          <a href="index.html" data-page="home">Home</a>
+          <a href="about.html" data-page="about">About Us</a>
+          <a href="services.html" data-page="services">Our Services</a>
+          <a href="projects.html" data-page="projects">Portfolio</a>
+          <a href="contact.html" data-page="contact">Contact Us</a>
         </div>
-
         <div class="nav-right">
-          <button class="btn-login" id="openLoginBtn" type="button" aria-label="Login to your account">
-            <svg viewBox="0 0 24 24"><path d="M12 2a5 5 0 1 1 0 10A5 5 0 0 1 12 2zm0 12c5.33 0 8 2.67 8 4v2H4v-2c0-1.33 2.67-4 8-4z"/></svg>
+          <a class="btn-login" href="login.html" aria-label="Login to your account">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 12c5.33 0 8 2.67 8 4v2H4v-2c0-1.33 2.67-4 8-4z"/></svg>
             <span>Login</span>
-          </button>
+          </a>
           <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
         </div>
       </nav>
@@ -99,182 +48,163 @@
   </header>
 
   <main id="home">
-
     <section class="hero">
       <div class="hero-shell">
         <div class="hero-grid">
-          <div class="reveal">
+          <div>
             <span class="badge">Master Builders &amp; Engineers</span>
             <h1>Constructing landmark structures with architectural integrity.</h1>
             <p>Stackly specializes in comprehensive construction management, structural engineering, and high-end project delivery for urban developments and industrial facilities.</p>
             <div class="hero-actions">
-              <a class="btn btn-primary" href="#contact">Request a Quote</a>
-              <a class="btn btn-secondary" href="#projects">View Portfolio</a>
-              <a class="btn btn-ghost" href="404.html" target="_blank" rel="noopener noreferrer">Company Profile</a>
+              <a class="btn btn-primary" href="contact.html">Request a Quote</a>
+              <a class="btn btn-secondary" href="projects.html">View Portfolio</a>
+              <a class="btn btn-ghost" href="404.html">Company Profile</a>
             </div>
             <div class="hero-stats">
               <article class="hero-stat"><strong>180+</strong><span>Landmarks completed</span></article>
-              <article class="hero-stat"><strong>25+</strong><span>Years of industry expertise</span></article>
-              <article class="hero-stat"><strong>24/7</strong><span>Site supervision &amp; safety</span></article>
+              <article class="hero-stat"><strong>25+</strong><span>Years of expertise</span></article>
+              <article class="hero-stat"><strong>24/7</strong><span>Site supervision</span></article>
             </div>
           </div>
-
-          <div class="hero-visual reveal" aria-hidden="true">
+          <div class="hero-visual" aria-hidden="true">
             <article class="float-card float-card--top">
-              <h3>Commercial Development</h3>
-              <p>Corporate towers and retail hubs built with global safety and quality standards.</p>
+              <h3>Commercial</h3>
+              <p>Towers with global standards.</p>
             </article>
             <article class="float-card float-card--middle">
-              <h3>Residential Luxury</h3>
-              <p>Custom-built villas and modern townships designed for sustainable living.</p>
+              <h3>Residential</h3>
+              <p>Luxury villas &amp; townships.</p>
             </article>
             <article class="float-card float-card--bottom">
-              <h3>Industrial Infrastructure</h3>
-              <p>Manufacturing plants and warehouses optimized for heavy-duty operations.</p>
+              <h3>Industrial</h3>
+              <p>Plants for heavy operations.</p>
             </article>
           </div>
         </div>
       </div>
     </section>
 
+    
     <section class="section">
-      <div class="container section-shell reveal">
+      <div class="container section-shell">
+        <div class="section-inner">
+          <div style="margin-bottom:1.4rem;text-align:center;">
+            <span class="badge">Featured Projects</span>
+            <h2 class="title">Recent landmarks delivered with precision.</h2>
+          </div>
+          <div class="featured-grid-jigjag">
+
+            <!-- Card 1: image left, content right (odd) -->
+            <article class="featured-card">
+              <img src="./assets/skyscape.webp" alt="Skyscape Residency" onerror="this.onerror=null;this.src='./assets/project-highrise.webp'">
+              <div class="featured-content">
+                <h3>Skyscape Residency</h3>
+                <p>12-story • 120 units • Dindigul</p>
+                <div class="project-meta">
+                  <span class="meta-tag">Residential</span>
+                  <span class="meta-status complete">Completed</span>
+                </div>
+                <p class="project-desc">Premium residential towers with modern amenities, smart home integrations, and panoramic city views. Delivered ahead of schedule.</p>
+              </div>
+            </article>
+
+            
+            <article class="featured-card">
+              <img src="./assets/project-detail.webp" alt="NH-44 Bridge Project">
+              <div class="featured-content">
+                <h3>NH-44 Bridge Project</h3>
+                <p>1.2km • 6-lane • Trichy</p>
+                <div class="project-meta">
+                  <span class="meta-tag">Infrastructure</span>
+                  <span class="meta-status">2025</span>
+                </div>
+                <p class="project-desc">Six-lane cable-stayed bridge spanning the Cauvery river with seismic-resistant design and LED-lit pylons.</p>
+              </div>
+            </article>
+
+            
+            <article class="featured-card">
+              <img src="./assets/photo-1486406146926-c627a92ad1ab.webp" alt="Tech Valley IT Park" onerror="this.onerror=null;this.src='./assets/project-commercial.webp'">
+              <div class="featured-content">
+                <h3>Tech Valley IT Park</h3>
+                <p>10-acre • 8 towers • Coimbatore</p>
+                <div class="project-meta">
+                  <span class="meta-tag">IT Park</span>
+                  <span class="meta-status complete">Completed</span>
+                </div>
+                <p class="project-desc">LEED Platinum certified tech campus with fiber-optic backbone, data centers, and 40% green landscape cover.</p>
+              </div>
+            </article>
+
+            
+            <article class="featured-card featured-video-card">
+              <div class="featured-video">
+                <video autoplay muted loop playsinline>
+                  <source src="./assets/nav-video1.mp4" type="video/mp4" />
+                </video>
+                <div class="video-overlay"><span class="play-badge">LIVE PROJECT</span></div>
+              </div>
+              <div class="featured-content">
+                <h3>Metropolitan Business Park</h3>
+                <p>5 lakh sqft • LEED Gold Certified • Chennai</p>
+                <div class="project-meta">
+                  <span class="meta-tag">Commercial</span>
+                  <span class="meta-status">Ongoing • Q4 2026</span>
+                </div>
+                <p class="project-desc">State-of-the-art corporate campus with 5 towers, helipad, and sustainable infrastructure. Zero-discharge water system and 40% green cover.</p>
+              </div>
+            </article>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    
+    <section class="section">
+      <div class="container section-shell">
         <div class="section-inner">
           <span class="eyebrow">Our Core Values</span>
           <h2 class="title">Engineering a sustainable future through structural innovation.</h2>
           <p class="copy">We prioritize durability and safety in every project, ensuring that our architectural designs translate into lasting physical legacies.</p>
           <div class="highlight-strip">
-            <article class="highlight-item"><strong>Integrity</strong><span>Honest project management and costings</span></article>
-            <article class="highlight-item"><strong>Quality</strong><span>Premium materials and rigorous testing</span></article>
-            <article class="highlight-item"><strong>Safety</strong><span>Zero-compromise on-site protection</span></article>
-            <article class="highlight-item"><strong>Support</strong><span>End-to-end maintenance and assistance</span></article>
+            <article class="highlight-item"><strong>Integrity</strong><span>Honest management</span></article>
+            <article class="highlight-item"><strong>Quality</strong><span>Premium materials</span></article>
+            <article class="highlight-item"><strong>Safety</strong><span>Zero-compromise</span></article>
+            <article class="highlight-item"><strong>Support</strong><span>End-to-end help</span></article>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section class="section" id="about">
-      <div class="container about-grid">
-        <div class="about-photo reveal" aria-label="Professional construction management team"></div>
-        <article class="about-card reveal">
-          <span class="badge">Who We Are</span>
-          <h2 class="title">Decades of experience in delivering complex structures.</h2>
-          <p class="copy">From initial feasibility studies to final turnkey delivery, Stackly ensures every phase is meticulously planned and executed by seasoned industry leaders.</p>
-          <p class="copy" style="margin-top:1rem;">Our commitment to precision has made us a trusted partner for government and private sector developments alike.</p>
-        </article>
-      </div>
-    </section>
-
-    <section class="section" id="services">
-      <div class="container section-shell">
-        <div class="section-inner">
-          <div class="reveal" style="margin-bottom:1rem;">
-            <span class="badge">What We Do</span>
-            <h2 class="title">Specialized solutions for every construction requirement.</h2>
-            <p class="copy">Our diverse expertise allows us to provide custom solutions across multiple sectors, ensuring functional and aesthetic perfection.</p>
-          </div>
-          <div class="grid-3">
-            <article class="service-card reveal">
-              <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M3 20h18v2H3zM5 18V8l7-5 7 5v10h-2v-9.03l-5-3.58-5 3.58V18z"/></svg></div>
-              <h3>Corporate Offices</h3>
-              <p class="copy">Designing and building modern business environments that foster productivity and brand prestige.</p>
-            </article>
-            <article class="service-card reveal">
-              <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M2 20h20v2H2zm3-2V8h3v10zm5 0V4h4v14zm6 0v-7h3v7z"/></svg></div>
-              <h3>Infrastructure</h3>
-              <p class="copy">Large-scale industrial sites and facilities built for maximum operational efficiency.</p>
-            </article>
-            <article class="service-card reveal">
-              <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M12 3 4 9v12h6v-6h4v6h6V9z"/></svg></div>
-              <h3>Elite Housing</h3>
-              <p class="copy">Tailored residential projects combining luxury architecture with high-strength construction.</p>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="projects">
-      <div class="container grid-2">
-        <article class="project-card reveal">
-          <div class="project-photo" aria-label="Completed commercial tower"></div>
-          <h3>Metropolitan Business Park</h3>
-          <p class="copy">A multi-phased commercial development featuring sustainable energy systems and advanced structural engineering.</p>
-          <a class="btn btn-ghost" href="404.html" rel="noopener noreferrer">View Project Specs</a>
-        </article>
-        <article class="project-card reveal">
-          <div class="site-photo" aria-label="Ongoing high-rise development"></div>
-          <h3>Skyscape Residency</h3>
-          <p class="copy">A high-density residential complex focusing on community living, safety, and modern architectural aesthetics.</p>
-          <a class="btn btn-secondary" href="#contact">Inquire for Similar Projects</a>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container section-shell reveal">
-        <div class="section-inner grid-2" style="align-items:center;">
-          <div>
-            <span class="badge">Technical Excellence</span>
-            <h2 class="title">Advanced machinery and skilled craftsmanship on every site.</h2>
-            <p class="copy">We utilize the latest construction technology to ensure timelines are met without compromising the structural integrity of the build.</p>
-          </div>
-          <div class="quality-video-box" aria-label="Site operations showcase">
-            <video class="quality-video" autoplay muted loop playsinline>
-              <source src="./assets/nav-video1.mp4" type="video/mp4" />
-            </video>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="contact">
-      <div class="container contact-layout">
-        <article class="contact-card reveal">
-          <span class="badge">Get in Touch</span>
-          <h2 class="title">Let's discuss the vision for your next landmark project.</h2>
-          <div class="contact-lines">
-            <div class="contact-line"><strong>Head Office</strong><a href="tel:+919876543210">+91 98765 43210</a></div>
-            <div class="contact-line"><strong>Support</strong><a href="mailto:info@thestackly.com">info@thestackly.com</a></div>
-            <div class="contact-line"><strong>Location</strong><span>MMR Complex, Chinna Thirupathi, near Chinna Muniyappan Kovil, Salem, Tamil Nadu 636008</span></div>
-          </div>
-          <div class="socials" aria-label="Social connections">
-            <a class="social" href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.6 1.6-1.6h1.7V3.8c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.4V10H8v3h2.1v8h3.4Z"/></svg></a>
-            <a class="social" href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7.5 3h9A4.5 4.5 0 0 1 21 7.5v9a4.5 4.5 0 0 1-4.5 4.5h-9A4.5 4.5 0 0 1 3 16.5v-9A4.5 4.5 0 0 1 7.5 3Zm0 1.8A2.7 2.7 0 0 0 4.8 7.5v9a2.7 2.7 0 0 0 2.7 2.7h9a2.7 2.7 0 0 0 2.7-2.7v-9a2.7 2.7 0 0 0-2.7-2.7h-9Zm9.45 1.35a1.05 1.05 0 1 1 0 2.1 1.05 1.05 0 0 1 0-2.1ZM12 7.8A4.2 4.2 0 1 1 7.8 12 4.2 4.2 0 0 1 12 7.8Zm0 1.8A2.4 2.4 0 1 0 14.4 12 2.4 2.4 0 0 0 12 9.6Z"/></svg></a>
-            <a class="social" href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><svg viewBox="0 0 24 24"><path d="M18.9 3H22l-6.77 7.74L23 21h-6.1l-4.78-6.25L6.66 21H3.54l7.24-8.27L1.5 3h6.25l4.32 5.71L18.9 3Zm-1.07 16.2h1.69L6.84 4.7H5.03L17.83 19.2Z"/></svg></a>
-            <a class="social" href="https://pinterest.com" target="_blank" rel="noopener noreferrer" aria-label="Pinterest"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.64 19.31c-.05-1.64 0-3.61.43-5.37l1.43-6.08S9.86 8.9 9.86 8.2c0-1.15.67-2.01 1.5-2.01.71 0 1.05.53 1.05 1.16 0 .71-.45 1.78-.69 2.77-.2.84.42 1.52 1.25 1.52 1.5 0 2.66-1.58 2.66-3.86 0-2.02-1.45-3.43-3.52-3.43-2.4 0-3.81 1.8-3.81 3.65 0 .72.28 1.5.63 1.92.07.08.08.15.06.24l-.24.98c-.04.15-.12.18-.27.11-1-.47-1.62-1.93-1.62-3.1 0-2.53 1.84-4.86 5.31-4.86 2.79 0 4.96 1.99 4.96 4.66 0 2.78-1.75 5.02-4.19 5.02-.82 0-1.59-.43-1.85-.93l-.5 1.88c-.18.69-.67 1.54-1 2.06.75.23 1.55.35 2.38.35A10 10 0 1 0 12 2Z"/></svg></a>
-          </div>
-        </article>
-
-        <article class="contact-card reveal">
-          <h3>Project Consultation Enquiry</h3>
-          <p class="copy">Please provide your project details below. Our technical team will review and contact you shortly.</p>
-          <form id="contactForm">
-            <div class="form-grid">
-              <div class="field"><label for="cName">Full Name</label><input id="cName" name="name" type="text" required placeholder="Project lead or contact name" /></div>
-              <div class="field"><label for="cCompany">Organization</label><input id="cCompany" name="company" type="text" required placeholder="Company or Firm name" /></div>
-              <div class="field"><label for="cEmail">Work Email</label><input id="cEmail" name="email" type="email" required placeholder="official@company.com" /></div>
-              <div class="field"><label for="cPhone">Contact Number</label><input id="cPhone" name="phone" type="tel" required placeholder="+91 XXXXX XXXXX" /></div>
-              <div class="field full"><label for="cMessage">Project Requirements</label><textarea id="cMessage" name="message" required placeholder="Describe the scale and type of construction project"></textarea></div>
-            </div>
-            <div style="display:flex;gap:.8rem;flex-wrap:wrap;">
-              <button class="btn btn-primary" type="submit">Submit Details</button>
-              <button class="btn btn-ghost" type="reset">Clear Form</button>
-            </div>
-          </form>
-        </article>
       </div>
     </section>
   </main>
 
+ 
   <footer class="footer">
     <div class="footer-shell">
+      <a href="index.html" class="footer-logo">
+        <img src="./assets/logo-placeholder.webp" alt="Stackly logo" width="160" height="46" loading="lazy" />
+      </a>
       <p>&copy; 2026 Stackly Constructions. All rights reserved.</p>
       <div class="footer-links">
-        <a href="#about">Company</a>
-        <a href="#services">Services</a>
-        <a href="#projects">Work</a>
-        <a href="#contact">Contact</a>
+        <a href="about.html">Company</a>
+        <a href="services.html">Services</a>
+        <a href="projects.html">Work</a>
+        <a href="contact.html">Contact</a>
+      </div>
+      
+      <div class="social-links">
+        <a href="404.html" class="social-icon" aria-label="Facebook">
+          <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+        </a>
+        <a href="404.html" class="social-icon" aria-label="Instagram">
+          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="404.html" class="social-icon" aria-label="X / Twitter">
+          <svg viewBox="0 0 24 24"><path d="M18.9 3H22l-6.77 7.74L23 21h-6.1l-4.78-6.25L6.66 21H3.54l7.24-8.27L1.5 3h6.25l4.32 5.71L18.9 3Zm-1.07 16.2h1.69L6.84 4.7H5.03L17.83 19.2Z"/></svg>
+        </a>
+        <a href="404.html" class="social-icon" aria-label="Pinterest">
+          <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.64 19.31c-.05-1.64 0-3.61.43-5.37l1.43-6.08S9.86 8.9 9.86 8.2c0-1.15.67-2.01 1.5-2.01.71 0 1.05.53 1.05 1.16 0 .71-.45 1.78-.69 2.77-.2.84.42 1.52 1.25 1.52 1.5 0 2.66-1.58 2.66-3.86 0-2.02-1.45-3.43-3.52-3.43-2.4 0-3.81 1.8-3.81 3.65 0 .72.28 1.5.63 1.92.07.08.15.06.24l-.24.98c-.04.15-.12.18-.27.11-1-.47-1.62-1.93-1.62-3.1 0-2.53 1.84-4.86 5.31-4.86 2.79 0 4.96 1.99 4.96 4.66 0 2.78-1.75 5.02-4.19 5.02-.82 0-1.59-.43-1.85-.93l-.5 1.88c-.18.69-.67 1.54-1 2.06.75.23 1.55.35 2.38.35A10 10 0 1 0 12 2Z"/></svg>
+        </a>
       </div>
     </div>
   </footer>
