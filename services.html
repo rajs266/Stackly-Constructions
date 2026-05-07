@@ -6,12 +6,47 @@
   <meta name="description" content="Stackly offers residential, commercial, industrial construction and infrastructure services across Tamil Nadu." />
   <title>Our Services | Stackly Construction</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
   <div class="loader" id="loader">
     <div class="loader-box">
       <div class="loader-ring" aria-hidden="true"></div>
       <p>Building Excellence</p>
+    </div>
+  </div>
+
+  <div class="modal-backdrop" id="loginBackdrop" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+    <div class="modal" id="loginModal">
+      <button class="modal-close" id="modalClose" aria-label="Close login">&times;</button>
+      <div class="modal-logo" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M12 2a5 5 0 1 1 0 10A5 5 0 0 1 12 2zm0 12c5.33 0 8 2.67 8 4v2H4v-2c0-1.33 2.67-4 8-4z"/></svg>
+      </div>
+      <h2 id="loginTitle">Welcome back</h2>
+      <p class="modal-sub">Sign in to your Stackly account</p>
+      <form class="login-form" id="loginForm" novalidate>
+        <div class="login-field">
+          <label for="loginEmail">Email address</label>
+          <input type="email" id="loginEmail" name="loginEmail" placeholder="official@company.com" autocomplete="email" />
+          <span class="field-error" id="emailErr">Please enter a valid email address.</span>
+        </div>
+        <div class="login-field">
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" name="loginPassword" placeholder="Enter your password" autocomplete="current-password" />
+          <span class="field-error" id="passErr">Password must be at least 6 characters.</span>
+        </div>
+        <div class="login-form-footer">
+          <label style="display:flex;align-items:center;gap:.4rem;font-size:.83rem;color:#8aacc8;cursor:pointer">
+            <input type="checkbox" id="rememberMe" style="width:auto;min-height:auto;accent-color:#4dd4ff" />
+            Remember me
+          </label>
+          <a href="contact.html">Forgot password?</a>
+        </div>
+        <button class="btn-login-submit" type="submit" id="loginSubmitBtn">Sign In</button>
+        <p class="login-divider">Don't have an account? <a href="contact.html" style="color:#4dd4ff;font-weight:700;">Contact us</a></p>
+      </form>
     </div>
   </div>
 
@@ -49,7 +84,7 @@
         <div class="section-inner">
           <span class="badge">What We Do</span>
           <h1 class="title">End-to-End Construction Solutions</h1>
-          <p class="copy">From soil testing to final handover, we handle every phase with precision. 500+ crore worth projects delivered on time.</p>
+          <p class="copy">From soil testing to final handover, we handle every phase with precision. 500+ crore worth projects delivered on time across Tamil Nadu.</p>
         </div>
       </div>
     </section>
@@ -57,73 +92,221 @@
     <section class="section" id="services">
       <div class="container section-shell">
         <div class="section-inner">
+          <div style="text-align:center;margin-bottom:2rem;" data-reveal="up">
+            <span class="badge">Our Expertise</span>
+            <h2 class="title">Comprehensive Construction Services</h2>
+            <p class="copy">We deliver excellence across all construction verticals with ISO 9001:2015 certified processes.</p>
+          </div>
           <div class="grid-3">
-            <article class="service-card reveal">
+            <article class="service-card reveal" data-reveal="up" data-delay="1">
               <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M3 20h18v2H3zM5 18V8l7-5 7 5v10h-2v-9.03l-5-3.58-5 3.58V18z"/></svg></div>
               <h3>Residential Construction</h3>
               <p class="copy">Individual homes, duplex villas, apartment complexes. 2BHK starting 25 lakhs. Free plan approval, vastu consultation, bank loan support. 150+ homes in Dindigul, Madurai, Trichy.</p>
-              <ul style="color:#b7c8da;font-size:.9rem;margin-top:1rem;list-style:none;padding:0;">
+              <ul>
                 <li>✓ Free 3D design & walkthrough</li>
                 <li>✓ Branded materials: UltraTech, TATA Steel</li>
                 <li>✓ 10-year structural warranty</li>
                 <li>✓ EMI option available</li>
               </ul>
+              <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.08);">
+                <span style="color:#4dd4ff;font-size:.85rem;font-weight:700;">Starting from ₹25 Lakhs</span>
+              </div>
             </article>
-            <article class="service-card reveal">
+            <article class="service-card reveal" data-reveal="up" data-delay="2">
               <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M2 20h20v2H2zm3-2V8h3v10zm5 0V4h4v14zm6 0v-7h3v7z"/></svg></div>
               <h3>Commercial Buildings</h3>
               <p class="copy">Office complexes, shopping malls, hotels, hospitals, schools. CMDA/DTCP approved plans. Fire safety NOC, lift, generator backup. Earthquake resistant design.</p>
-              <ul style="color:#b7c8da;font-size:.9rem;margin-top:1rem;list-style:none;padding:0;">
+              <ul>
                 <li>✓ IIT structural design</li>
                 <li>✓ MEP services included</li>
                 <li>✓ On-time delivery guarantee</li>
                 <li>✓ Green building certified</li>
               </ul>
+              <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.08);">
+                <span style="color:#4dd4ff;font-size:.85rem;font-weight:700;">Starting from ₹50 Lakhs</span>
+              </div>
             </article>
-            <article class="service-card reveal">
+            <article class="service-card reveal" data-reveal="up" data-delay="3">
               <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M12 3 4 9v12h6v-6h4v6h6V9z"/></svg></div>
               <h3>Industrial Projects</h3>
               <p class="copy">Factories, warehouses, cold storage, textile mills. Heavy-duty flooring 5-ton capacity, EOT crane provision, 3-phase power, ETP plant. 20+ factories completed.</p>
-              <ul style="color:#b7c8da;font-size:.9rem;margin-top:1rem;list-style:none;padding:0;">
+              <ul>
                 <li>✓ PEB structure option</li>
                 <li>✓ Pollution clearance support</li>
                 <li>✓ 24/7 construction</li>
                 <li>✓ Export quality standards</li>
               </ul>
+              <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.08);">
+                <span style="color:#4dd4ff;font-size:.85rem;font-weight:700;">Starting from ₹1 Crore</span>
+              </div>
             </article>
-            <article class="service-card reveal">
+            <article class="service-card reveal" data-reveal="up" data-delay="4">
               <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/></svg></div>
               <h3>Roads & Infrastructure</h3>
               <p class="copy">State highways, village roads, flyovers, bridges, culverts, drainage. Bitumen & concrete roads. 250km completed for TN Highways Dept. NHAI specifications.</p>
-              <ul style="color:#b7c8da;font-size:.9rem;margin-top:1rem;list-style:none;padding:0;">
+              <ul>
                 <li>✓ Own machinery fleet</li>
                 <li>✓ Quality lab testing</li>
                 <li>✓ 5-year maintenance</li>
                 <li>✓ Traffic management</li>
               </ul>
+              <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.08);">
+                <span style="color:#4dd4ff;font-size:.85rem;font-weight:700;">Government Approved</span>
+              </div>
             </article>
-            <article class="service-card reveal">
+            <article class="service-card reveal" data-reveal="up" data-delay="5">
               <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M7 7h10v2H7zm0 4h10v2H7zm0 4h7v2H7z"/></svg></div>
               <h3>Renovation & Interiors</h3>
               <p class="copy">Old building restoration, extension, modular kitchen, wardrobes, false ceiling, painting, plumbing, electrical. 30-day makeover packages. Dust-free technology.</p>
-              <ul style="color:#b7c8da;font-size:.9rem;margin-top:1rem;list-style:none;padding:0;">
+              <ul>
                 <li>✓ 3D visualization free</li>
                 <li>✓ Branded fittings only</li>
                 <li>✓ Weekend work option</li>
                 <li>✓ EMI available</li>
               </ul>
+              <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.08);">
+                <span style="color:#4dd4ff;font-size:.85rem;font-weight:700;">Starting from ₹3 Lakhs</span>
+              </div>
             </article>
-            <article class="service-card reveal">
+            <article class="service-card reveal" data-reveal="up" data-delay="6">
               <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
               <h3>Architecture & Planning</h3>
               <p class="copy">Building plan, elevation, structural design, MEP drawings, 3D walkthrough. Council of Architecture approved. Vastu compliant designs. Online approval tracking.</p>
-              <ul style="color:#b7c8da;font-size:.9rem;margin-top:1rem;list-style:none;padding:0;">
+              <ul>
                 <li>✓ Unlimited revisions</li>
                 <li>✓ Site supervision</li>
                 <li>✓ Govt approval support</li>
                 <li>✓ Structural audit</li>
               </ul>
+              <div style="margin-top:1rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.08);">
+                <span style="color:#4dd4ff;font-size:.85rem;font-weight:700;">Starting from ₹25,000</span>
+              </div>
             </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container section-shell reveal">
+        <div class="section-inner">
+          <div style="text-align:center;margin-bottom:2rem;">
+            <span class="badge">How We Work</span>
+            <h2 class="title">Our Construction Process</h2>
+            <p class="copy">From concept to completion in 5 systematic phases</p>
+          </div>
+          <div class="grid-3">
+            <article class="highlight-item" data-reveal="scale" data-delay="1">
+              <strong style="font-size:2rem;color:#4dd4ff;">01</strong>
+              <span style="display:block;margin-top:.5rem;font-weight:700;">Consultation</span>
+              <span style="font-size:.85rem;color:#8aacc8;">Free site visit, requirement gathering, budget planning</span>
+            </article>
+            <article class="highlight-item" data-reveal="scale" data-delay="2">
+              <strong style="font-size:2rem;color:#7c5cff;">02</strong>
+              <span style="display:block;margin-top:.5rem;font-weight:700;">Design & Approval</span>
+              <span style="font-size:.85rem;color:#8aacc8;">3D modeling, structural plans, government approvals</span>
+            </article>
+            <article class="highlight-item" data-reveal="scale" data-delay="3">
+              <strong style="font-size:2rem;color:#00d7a3;">03</strong>
+              <span style="display:block;margin-top:.5rem;font-weight:700;">Construction</span>
+              <span style="font-size:.85rem;color:#8aacc8;">Quality materials, skilled labor, daily progress updates</span>
+            </article>
+            <article class="highlight-item" data-reveal="scale" data-delay="4">
+              <strong style="font-size:2rem;color:#ff5fa2;">04</strong>
+              <span style="display:block;margin-top:.5rem;font-weight:700;">Quality Check</span>
+              <span style="font-size:.85rem;color:#8aacc8;">Multi-stage inspection, lab testing, safety audit</span>
+            </article>
+            <article class="highlight-item" data-reveal="scale" data-delay="5">
+              <strong style="font-size:2rem;color:#ff9a3d;">05</strong>
+              <span style="display:block;margin-top:.5rem;font-weight:700;">Handover</span>
+              <span style="font-size:.85rem;color:#8aacc8;">Final walkthrough, documentation, warranty certificate</span>
+            </article>
+            <article class="highlight-item" data-reveal="scale" data-delay="6">
+              <strong style="font-size:2rem;color:#4dd4ff;">★</strong>
+              <span style="display:block;margin-top:.5rem;font-weight:700;">After-Sales Support</span>
+              <span style="font-size:.85rem;color:#8aacc8;">10-year warranty, annual maintenance, 24/7 support</span>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container section-shell reveal">
+        <div class="section-inner">
+          <div style="text-align:center;margin-bottom:2rem;">
+            <span class="badge">FAQ</span>
+            <h2 class="title">Frequently Asked Questions</h2>
+          </div>
+          <div class="faq-container">
+            <div class="faq-item" data-reveal="up" data-delay="1">
+              <div class="faq-question">
+                <span>What is the typical timeline for a residential project?</span>
+                <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-answer">
+                <p>A standard 2BHK house takes 6-8 months from foundation to handover. For apartment complexes, it ranges from 18-24 months depending on the number of floors and amenities.</p>
+              </div>
+            </div>
+            <div class="faq-item" data-reveal="up" data-delay="2">
+              <div class="faq-question">
+                <span>Do you provide bank loan assistance?</span>
+                <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-answer">
+                <p>Yes, we have tie-ups with all major banks including SBI, HDFC, ICICI, and Axis. Our dedicated loan assistance team helps with documentation and approval process.</p>
+              </div>
+            </div>
+            <div class="faq-item" data-reveal="up" data-delay="3">
+              <div class="faq-question">
+                <span>What materials do you use for construction?</span>
+                <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-answer">
+                <p>We use only branded materials: UltraTech cement, TATA/TMT steel, Asian Paints, Jaguar fittings. All materials come with manufacturer warranty and quality certificates.</p>
+              </div>
+            </div>
+            <div class="faq-item" data-reveal="up" data-delay="4">
+              <div class="faq-question">
+                <span>Is Vastu consultation included?</span>
+                <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-answer">
+                <p>Yes, free Vastu consultation is included in all residential projects. Our certified Vastu experts ensure optimal energy flow and directional alignment.</p>
+              </div>
+            </div>
+            <div class="faq-item" data-reveal="up" data-delay="5">
+              <div class="faq-question">
+                <span>Do you offer EMI options?</span>
+                <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-answer">
+                <p>Yes, we offer flexible EMI options starting from ₹15,000/month for residential projects. Commercial and industrial projects have customized payment schedules.</p>
+              </div>
+            </div>
+            <div class="faq-item" data-reveal="up" data-delay="6">
+              <div class="faq-question">
+                <span>What is your warranty policy?</span>
+                <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-answer">
+                <p>We provide 10-year structural warranty, 5-year waterproofing warranty, and 2-year electrical/plumbing warranty. Annual maintenance contracts are also available.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container section-shell reveal">
+        <div class="section-inner" style="text-align:center;">
+          <span class="badge">Get Started</span>
+          <h2 class="title">Ready to Build Your Dream?</h2>
+          <p class="copy" style="max-width:60ch;margin:1rem auto 2rem;">Get a free consultation and detailed quote within 24 hours. Our experts are ready to bring your vision to life.</p>
+          <div class="hero-actions" style="justify-content:center;">
+            <a href="contact.html" class="btn btn-primary">Get Free Quote</a>
+            <a href="tel:+919876543210" class="btn btn-secondary">Call: +91 98765 43210</a>
           </div>
         </div>
       </div>

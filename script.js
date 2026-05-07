@@ -1,6 +1,7 @@
 ﻿(() => {
   'use strict';
 
+  
   const loader = document.getElementById('loader');
   const start = performance.now();
 
@@ -14,6 +15,7 @@
     }, delay);
   });
 
+  
   const menuBtn = document.getElementById('menuBtn');
   const navLinks = document.getElementById('navLinks');
   const navWrap = document.querySelector('.nav-wrap');
@@ -68,6 +70,7 @@
     }
   });
 
+  
   const navVideo = document.getElementById('navVideo');
   const navOverlay = document.getElementById('navOverlay');
 
@@ -93,7 +96,6 @@
 
     const linkFile = linkHref ? linkHref.split('/').pop() : '';
 
-    
     const isHome = (currentFile === '' || currentFile === 'index.html') && (linkFile === 'index.html' || linkFile === '');
     const isExact = linkFile === currentFile && currentFile !== '' && currentFile !== 'index.html';
 
@@ -103,9 +105,7 @@
   });
 
   
-  
   document.addEventListener('DOMContentLoaded', () => {
-    
     document.querySelectorAll(
       '.reveal, .section, .featured-card, .service-card, .about-card, .project-card, .contact-card, .section-inner, .hero-grid, .section-shell, .highlight-item, .float-card, .hero-stat'
     ).forEach(el => {
@@ -114,7 +114,6 @@
       el.style.transform = 'none';
     });
 
-    
     setTimeout(() => {
       document.querySelectorAll('.featured-card, .service-card, .about-card, .project-card').forEach((el, index) => {
         el.style.transition = 'transform .24s cubic-bezier(.16,1,.3,1), box-shadow .24s ease, border-color .24s ease';
@@ -123,7 +122,6 @@
     }, 200);
   });
 
-  
   
   const footerShell = document.querySelector('.footer-shell');
 
@@ -384,6 +382,7 @@
     });
   }
 
+  
   const contactForm = document.getElementById('contactForm');
   if (contactForm) {
     contactForm.addEventListener('submit', e => {
@@ -406,6 +405,7 @@
     });
   }
 
+  
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       const href = this.getAttribute('href');
@@ -424,6 +424,7 @@
     });
   });
 
+  
   const lazyImages = document.querySelectorAll('img[loading="lazy"]');
   if(lazyImages.length > 0) {
     const imageObserver = new IntersectionObserver((entries, observer) => {
@@ -447,7 +448,6 @@
     const revealEls = document.querySelectorAll('[data-reveal]');
     if (!revealEls.length) return;
 
-    // Hero elements visible immediately on page load
     const heroShell = document.querySelector('.hero-shell');
 
     const observer = new IntersectionObserver((entries) => {
@@ -463,7 +463,6 @@
     });
 
     revealEls.forEach(el => {
-      
       if (heroShell && heroShell.contains(el)) {
         const delay = parseInt(el.dataset.delay || 0) * 100;
         setTimeout(() => el.classList.add('is-visible'), 200 + delay);
@@ -473,11 +472,60 @@
     });
   };
 
-  // Run after DOM ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initScrollReveal);
   } else {
     initScrollReveal();
+  }
+
+  
+  const faqItems = document.querySelectorAll('.faq-item');
+  if(faqItems.length > 0) {
+    faqItems.forEach(item => {
+      const question = item.querySelector('.faq-question');
+      if(question) {
+        question.addEventListener('click', () => {
+          const isActive = item.classList.contains('active');
+          
+          faqItems.forEach(i => i.classList.remove('active'));
+          
+          if(!isActive) {
+            item.classList.add('active');
+          }
+        });
+      }
+    });
+  }
+
+  
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const projectCards = document.querySelectorAll('.project-card[data-category]');
+  
+  if(filterBtns.length > 0 && projectCards.length > 0) {
+    filterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const filter = btn.dataset.filter;
+        
+        filterBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        
+        projectCards.forEach(card => {
+          if(filter === 'all' || card.dataset.category === filter) {
+            card.style.display = 'block';
+            setTimeout(() => {
+              card.style.opacity = '1';
+              card.style.transform = 'translateY(0)';
+            }, 50);
+          } else {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            setTimeout(() => {
+              card.style.display = 'none';
+            }, 300);
+          }
+        });
+      });
+    });
   }
 
 })();

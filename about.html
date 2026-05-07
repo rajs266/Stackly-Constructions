@@ -17,7 +17,7 @@
 
   <header class="header">
     <div class="nav-wrap nav-wrap--video">
-      <video class="nav-video" id="navVideo" autoplay muted loop playsinline aria-hidden="true">
+      <video class="nav-video" id="navVideo" autoplay muted loop playsinline aria-hidden="true" onerror="this.style.display='none'">
         <source src="./assets/nav-video.mp4" type="video/mp4" />
       </video>
       <div class="nav-overlay" id="navOverlay"></div>
@@ -37,31 +37,33 @@
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 12c5.33 0 8 2.67 8 4v2H4v-2c0-1.33 2.67-4 8-4z"/></svg>
             <span>Login</span>
           </button>
-          <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
+          <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false">&#9776;</button>
         </div>
       </nav>
     </div>
   </header>
 
   <main>
+    
     <section class="section" style="padding-top: 2rem;">
       <div class="container section-shell reveal">
         <div class="section-inner">
           <span class="badge">Who We Are</span>
           <h1 class="title">25 Years of Building Tamil Nadu's Skyline</h1>
-          <p class="copy">Founded in 1999 in Dindigul, Stackly has grown from a 5-member team to 200+ professionals delivering landmark projects across South India.</p>
+          <p class="copy">Founded in 1999 in Dindigul, Stackly has grown from a 5-member team to 200+ professionals delivering landmark projects across South India. Our commitment to quality, safety, and innovation has made us the most trusted name in construction.</p>
         </div>
       </div>
     </section>
 
+    
     <section class="section" id="about">
       <div class="container about-grid">
         <div class="about-photo reveal" aria-label="Professional construction management team"></div>
         <article class="about-card reveal">
           <span class="badge">Our Journey</span>
           <h2 class="title">From Local Contractor to Industry Leader</h2>
-          <p class="copy">Started with small residential projects in 1999. Today we handle 500+ crore infrastructure projects for TN Government, NHAI, and Fortune 500 companies.</p>
-          <p class="copy" style="margin-top:1rem;">Our commitment to ISO 9001:2015 standards and zero-accident safety record has made us the most trusted name in construction.</p>
+          <p class="copy">Started with small residential projects in 1999. Today we handle 500+ crore infrastructure projects for TN Government, NHAI, and Fortune 500 companies. Our ISO 9001:2015 certified processes and zero-accident safety record speak for themselves.</p>
+          <p class="copy" style="margin-top:1rem">We have completed over 450 projects spanning residential complexes, commercial towers, industrial facilities, and public infrastructure. Our team includes IIT and NIT engineers, certified architects, and experienced project managers.</p>
           <div class="hero-stats" style="margin-top:1.5rem;">
             <article class="hero-stat"><strong>450+</strong><span>Projects Delivered</span></article>
             <article class="hero-stat"><strong>200+</strong><span>Expert Team</span></article>
@@ -71,91 +73,160 @@
       </div>
     </section>
 
+    
     <section class="section">
       <div class="container section-shell reveal">
         <div class="section-inner">
-
-          <!-- Our Journey–style header: photo left, heading right -->
-          <div class="about-section-head">
-            <div class="about-photo-sm" aria-hidden="true"></div>
-            <div class="about-section-content">
-              <span class="badge">Our Team</span>
-              <h2 class="title">IIT Engineers &amp; Certified Architects</h2>
-              <p class="copy">Behind every landmark we build is a team of dedicated professionals who bring precision, creativity, and decades of expertise to the site.</p>
-            </div>
+          <div style="text-align:center;margin-bottom:1.5rem">
+            <span class="badge">Our History</span>
+            <h2 class="title">Milestones That Define Us</h2>
           </div>
-
-          <!-- Team cards: full image top, info bottom -->
-          <div class="team-grid">
-
-            <article class="team-card" data-reveal="up" data-delay="1">
-              <div class="team-photo">
-                <img src="./assets/image1.webp" alt="Rajesh Kumar – Founder & CEO" loading="lazy">
-              </div>
-              <div class="team-info">
-                <h3>Rajesh Kumar</h3>
-                <div class="team-divider"></div>
-                <span class="team-role">Founder &amp; CEO</span>
-                <p class="team-bio">IIT Madras · 25 years experience · Led 100+ crore projects</p>
-              </div>
-            </article>
-
-            <article class="team-card" data-reveal="up" data-delay="2">
-              <div class="team-photo">
-                <img src="./assets/girl.webp" alt="Priya Sharma – Chief Architect" loading="lazy">
-              </div>
-              <div class="team-info">
-                <h3>Priya Sharma</h3>
-                <div class="team-divider"></div>
-                <span class="team-role">Chief Architect</span>
-                <p class="team-bio">SPA Delhi · LEED Certified · Designed 50+ luxury projects</p>
-              </div>
-            </article>
-
-            <article class="team-card" data-reveal="up" data-delay="3">
-              <div class="team-photo">
-                <img src="./assets/boy.webp" alt="Arun Prakash – Projects Director" loading="lazy">
-              </div>
-              <div class="team-info">
-                <h3>Arun Prakash</h3>
-                <div class="team-divider"></div>
-                <span class="team-role">Projects Director</span>
-                <p class="team-bio">NIT Trichy · PMP Certified · Expert in high-rise construction</p>
-              </div>
-            </article>
-
+          <div class="timeline">
+            <div class="timeline-item" data-reveal="up" data-delay="1">
+              <div class="timeline-year">1999</div>
+              <div class="timeline-title">Founded in Dindigul</div>
+              <div class="timeline-desc">Started as a small residential construction firm with 5 dedicated team members and a vision to transform Tamil Nadu's infrastructure.</div>
+            </div>
+            <div class="timeline-item" data-reveal="up" data-delay="2">
+              <div class="timeline-year">2005</div>
+              <div class="timeline-title">First Commercial Project</div>
+              <div class="timeline-desc">Completed our first commercial complex - a 5-story building in Madurai, marking our entry into large-scale construction.</div>
+            </div>
+            <div class="timeline-item" data-reveal="up" data-delay="3">
+              <div class="timeline-year">2012</div>
+              <div class="timeline-title">ISO 9001:2015 Certification</div>
+              <div class="timeline-desc">Achieved international quality certification, establishing standardized processes across all project verticals.</div>
+            </div>
+            <div class="timeline-item" data-reveal="up" data-delay="4">
+              <div class="timeline-year">2018</div>
+              <div class="timeline-title">Infrastructure Division Launch</div>
+              <div class="timeline-desc">Expanded into roads, bridges, and government infrastructure projects. Secured first NHAI contract worth 180 crores.</div>
+            </div>
+            <div class="timeline-item" data-reveal="up" data-delay="5">
+              <div class="timeline-year">2023</div>
+              <div class="timeline-title">450+ Projects Milestone</div>
+              <div class="timeline-desc">Crossed 450 completed projects with 98% client satisfaction rate. Launched BIM and 3D modeling division.</div>
+            </div>
+            <div class="timeline-item" data-reveal="up" data-delay="6">
+              <div class="timeline-year">2026</div>
+              <div class="timeline-title">Pan-South India Expansion</div>
+              <div class="timeline-desc">Now operating across Tamil Nadu, Karnataka, Andhra Pradesh, and Kerala with 200+ professionals and 50+ ongoing projects.</div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
+    
     <section class="section">
       <div class="container section-shell reveal">
         <div class="section-inner">
+          <div class="about-section-head">
+            <div class="about-photo-sm" aria-hidden="true"></div>
+            <div class="about-section-content">
+              <span class="badge">Our Team</span>
+              <h2 class="title">IIT Engineers &amp; Certified Architects</h2>
+              <p class="copy">Behind every landmark we build is a team of dedicated professionals who bring precision, creativity, and decades of expertise to the site. Our leadership team combines academic excellence with practical field experience.</p>
+            </div>
+          </div>
+          <div class="team-grid">
+            <article class="team-card" data-reveal="up" data-delay="1">
+              <div class="team-photo">
+                <img src="./assets/image1.webp" alt="Rajesh Kumar - Founder & CEO" loading="lazy">
+              </div>
+              <div class="team-info">
+                <h3>Rajesh Kumar</h3>
+                <div class="team-divider"></div>
+                <span class="team-role">Founder &amp; CEO</span>
+                <p class="team-bio">IIT Madras &bull; 25 years experience &bull; Led 100+ crore projects</p>
+              </div>
+            </article>
+            <article class="team-card" data-reveal="up" data-delay="2">
+              <div class="team-photo">
+                <img src="./assets/girl.webp" alt="Priya Sharma - Chief Architect" loading="lazy">
+              </div>
+              <div class="team-info">
+                <h3>Priya Sharma</h3>
+                <div class="team-divider"></div>
+                <span class="team-role">Chief Architect</span>
+                <p class="team-bio">SPA Delhi &bull; LEED Certified &bull; Designed 50+ luxury projects</p>
+              </div>
+            </article>
+            <article class="team-card" data-reveal="up" data-delay="3">
+              <div class="team-photo">
+                <img src="./assets/boy.webp" alt="Arun Prakash - Projects Director" loading="lazy">
+              </div>
+              <div class="team-info">
+                <h3>Arun Prakash</h3>
+                <div class="team-divider"></div>
+                <span class="team-role">Projects Director</span>
+                <p class="team-bio">NIT Trichy &bull; PMP Certified &bull; Expert in high-rise construction</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
 
-          <!-- Our Journey–style header: content left, photo right -->
+    
+    <section class="section">
+      <div class="container section-shell reveal">
+        <div class="section-inner">
           <div class="about-section-head" style="direction:rtl">
             <div class="about-photo-sm" style="background:linear-gradient(180deg,rgba(8,21,38,.14),rgba(8,21,38,.24)),url('./assets/pc.webp') center/cover no-repeat;direction:ltr" aria-hidden="true"></div>
             <div class="about-section-content" style="direction:ltr">
               <span class="badge">Technology</span>
               <h2 class="title">Advanced Machinery &amp; BIM Technology</h2>
-              <p class="copy">We combine heavy iron with cutting-edge software — from owned crane fleets to full BIM 3D modelling — to deliver every project faster and smarter.</p>
+              <p class="copy">We combine heavy iron with cutting-edge software &mdash; from owned crane fleets to full BIM 3D modelling &mdash; to deliver every project faster and smarter. Our technology investments ensure precision, reduce waste, and accelerate timelines.</p>
             </div>
           </div>
-
           <div class="grid-2">
             <article class="project-card" data-reveal="left" data-delay="1">
               <div class="project-photo" style="background:linear-gradient(180deg,rgba(8,21,38,0.14),rgba(8,21,38,.22)),url('./assets/coding.webp') center/cover no-repeat"></div>
               <h3>Own Fleet of Equipment</h3>
-              <p class="copy">15 JCBs, 8 tower cranes, 5 concrete batching plants, drone survey units. No rental delays — 40% faster delivery.</p>
+              <p class="copy">15 JCBs, 8 tower cranes, 5 concrete batching plants, drone survey units. No rental delays &mdash; 40% faster delivery. All equipment maintained in-house with certified operators.</p>
             </article>
             <article class="project-card" data-reveal="right" data-delay="2">
               <div class="site-photo" style="background:linear-gradient(180deg,rgba(8,21,38,0.14),rgba(8,21,38,.22)),url('./assets/pc.webp') center/cover no-repeat"></div>
               <h3>BIM &amp; 3D Modeling</h3>
-              <p class="copy">Building Information Modeling for clash detection. Clients see 3D walkthrough before construction starts. Zero rework guarantee.</p>
+              <p class="copy">Building Information Modeling for clash detection. Clients see 3D walkthrough before construction starts. Zero rework guarantee with real-time progress tracking.</p>
             </article>
           </div>
+        </div>
+      </div>
+    </section>
 
+    
+    <section class="section">
+      <div class="container section-shell reveal">
+        <div class="section-inner">
+          <div style="text-align:center;margin-bottom:1rem">
+            <span class="badge">Recognition</span>
+            <h2 class="title">Awards &amp; Certifications</h2>
+            <p class="copy" style="max-width:60ch;margin:.5rem auto 0">Our commitment to excellence has been recognized by industry bodies and government organizations.</p>
+          </div>
+          <div class="awards-grid">
+            <div class="award-item" data-reveal="scale" data-delay="1">
+              <div class="award-icon">&#127942;</div>
+              <h4>Best Builder Award</h4>
+              <p>CREDAI Tamil Nadu 2024</p>
+            </div>
+            <div class="award-item" data-reveal="scale" data-delay="2">
+              <div class="award-icon">&#127941;</div>
+              <h4>Green Building Excellence</h4>
+              <p>IGBC Platinum Rating</p>
+            </div>
+            <div class="award-item" data-reveal="scale" data-delay="3">
+              <div class="award-icon">&#128295;</div>
+              <h4>Safety Leadership</h4>
+              <p>Zero Accident Record</p>
+            </div>
+            <div class="award-item" data-reveal="scale" data-delay="4">
+              <div class="award-icon">&#128200;</div>
+              <h4>Fastest Growing</h4>
+              <p>Construction World 2023</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
