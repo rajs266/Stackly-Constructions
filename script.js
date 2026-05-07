@@ -271,7 +271,7 @@
     new Slider();
   }
 
-  // Login modal
+  
   const backdrop = document.getElementById('loginBackdrop');
   const openLoginBtn = document.getElementById('openLoginBtn');
   const modalClose = document.getElementById('modalClose');
@@ -441,5 +441,43 @@
 
   console.log('%cStackly Construction Loaded Successfully', 'color: #4dd4ff; font-size: 16px; font-weight: bold; padding: 5px;');
   console.log('%cNo console errors detected', 'color: #00d7a3; font-size: 12px;');
+
+  
+  const initScrollReveal = () => {
+    const revealEls = document.querySelectorAll('[data-reveal]');
+    if (!revealEls.length) return;
+
+    // Hero elements visible immediately on page load
+    const heroShell = document.querySelector('.hero-shell');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    revealEls.forEach(el => {
+      
+      if (heroShell && heroShell.contains(el)) {
+        const delay = parseInt(el.dataset.delay || 0) * 100;
+        setTimeout(() => el.classList.add('is-visible'), 200 + delay);
+      } else {
+        observer.observe(el);
+      }
+    });
+  };
+
+  // Run after DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initScrollReveal);
+  } else {
+    initScrollReveal();
+  }
 
 })();
