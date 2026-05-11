@@ -9,9 +9,376 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* ===== HOMEPAGE EXTRA STYLES ===== */
+
+    /* Animated counter */
+    .counter-num { display: inline-block; }
+
+    /* Number ticker animation */
+    @keyframes countUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* Why Choose Us - icon cards */
+    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-top: 1.5rem; }
+    .why-card {
+      position: relative; padding: 2rem 1.5rem; border-radius: 1.6rem;
+      background: linear-gradient(145deg, rgba(12,26,46,.90), rgba(6,16,30,.85));
+      border: 1px solid rgba(255,255,255,.08); overflow: hidden;
+      transition: transform .32s cubic-bezier(.16,1,.3,1), box-shadow .32s ease, border-color .32s ease;
+      cursor: default;
+    }
+    .why-card::before {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(77,212,255,.10), transparent 50%);
+      opacity: 0; transition: opacity .32s ease; pointer-events: none;
+    }
+    .why-card:hover { transform: translateY(-10px) scale(1.02); box-shadow: 0 32px 64px rgba(0,0,0,.4); border-color: rgba(77,212,255,.35); }
+    .why-card:hover::before { opacity: 1; }
+    .why-card > * { position: relative; z-index: 1; }
+    .why-icon {
+      width: 64px; height: 64px; border-radius: 1.2rem; margin-bottom: 1.2rem;
+      background: linear-gradient(135deg, rgba(77,212,255,.2), rgba(124,92,255,.15));
+      border: 1px solid rgba(77,212,255,.2); display: grid; place-items: center;
+      font-size: 1.8rem; transition: transform .32s cubic-bezier(.16,1,.3,1), box-shadow .32s ease;
+    }
+    .why-card:hover .why-icon { transform: scale(1.15) rotate(-5deg); box-shadow: 0 12px 28px rgba(77,212,255,.3); }
+    .why-card h3 { font-size: 1.1rem; color: #fff; margin-bottom: .5rem; }
+    .why-card p { font-size: .88rem; color: #9dbdd8; line-height: 1.6; }
+    .why-card .why-badge {
+      display: inline-block; margin-top: .8rem; padding: .25rem .8rem;
+      border-radius: 999px; font-size: .72rem; font-weight: 700;
+      background: rgba(77,212,255,.12); border: 1px solid rgba(77,212,255,.2); color: #4dd4ff;
+    }
+
+    /* Gallery / Photo strip */
+    .gallery-strip {
+      display: grid; grid-template-columns: repeat(5, 1fr); gap: .6rem;
+      margin-top: 1.5rem; border-radius: 1.5rem; overflow: hidden;
+    }
+    .gallery-item {
+      position: relative; aspect-ratio: 3/4; overflow: hidden;
+      transition: transform .32s cubic-bezier(.16,1,.3,1);
+    }
+    .gallery-item:first-child, .gallery-item:last-child { grid-row: span 1; }
+    .gallery-item:nth-child(3) { grid-row: span 1; grid-column: span 1; }
+    .gallery-item .gallery-bg {
+      position: absolute; inset: 0; background-size: cover; background-position: center;
+      transition: transform .5s cubic-bezier(.16,1,.3,1), filter .5s ease;
+      filter: brightness(.75) saturate(1.1);
+    }
+    .gallery-item:hover .gallery-bg { transform: scale(1.1); filter: brightness(.95) saturate(1.3); }
+    .gallery-item .gallery-label {
+      position: absolute; bottom: 0; left: 0; right: 0; padding: .8rem;
+      background: linear-gradient(to top, rgba(0,0,0,.9), transparent);
+      font-size: .78rem; font-weight: 700; color: #fff; opacity: 0;
+      transition: opacity .32s ease; transform: translateY(8px);
+      transition: opacity .32s ease, transform .32s ease;
+    }
+    .gallery-item:hover .gallery-label { opacity: 1; transform: translateY(0); }
+
+    /* Gradient text highlight */
+    .grad-text {
+      background: linear-gradient(135deg, #4dd4ff, #7c5cff, #ff5fa2);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+
+    /* Number counter cards */
+    .big-stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 1.5rem;
+    }
+    .big-stat-card {
+      position: relative; padding: 2rem 1.2rem; border-radius: 1.6rem; text-align: center;
+      background: linear-gradient(145deg, rgba(12,26,46,.90), rgba(6,16,30,.85));
+      border: 1px solid rgba(255,255,255,.08); overflow: hidden;
+      transition: transform .32s cubic-bezier(.16,1,.3,1), box-shadow .32s ease;
+    }
+    .big-stat-card::after {
+      content: ""; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+      border-radius: 0 0 1.6rem 1.6rem;
+    }
+    .big-stat-card:nth-child(1)::after { background: linear-gradient(90deg, #4dd4ff, #7c5cff); }
+    .big-stat-card:nth-child(2)::after { background: linear-gradient(90deg, #7c5cff, #ff5fa2); }
+    .big-stat-card:nth-child(3)::after { background: linear-gradient(90deg, #00d7a3, #4dd4ff); }
+    .big-stat-card:nth-child(4)::after { background: linear-gradient(90deg, #ff9a3d, #ff5fa2); }
+    .big-stat-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 28px 56px rgba(0,0,0,.4); }
+    .big-stat-card .bsc-icon { font-size: 2.5rem; margin-bottom: .5rem; }
+    .big-stat-card .bsc-num {
+      font-size: clamp(2.2rem, 4vw, 3rem); font-weight: 800; line-height: 1;
+      background: linear-gradient(135deg, #fff, #4dd4ff);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .big-stat-card .bsc-label { font-size: .85rem; color: #9dbdd8; margin-top: .4rem; }
+
+    /* Parallax section divider */
+    .section-divider {
+      width: 100%; overflow: hidden; line-height: 0; margin: -1px 0;
+    }
+    .section-divider svg { display: block; width: 100%; }
+
+    /* Feature showcase - split layout */
+    .feature-split {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center;
+    }
+    .feature-split.reverse { direction: rtl; }
+    .feature-split.reverse > * { direction: ltr; }
+    .feature-img-wrap {
+      position: relative; border-radius: 2rem; overflow: hidden;
+      border: 1px solid rgba(77,212,255,.15); box-shadow: 0 32px 64px rgba(0,0,0,.5);
+    }
+    .feature-img-wrap .feature-img-bg {
+      min-height: 380px; background-size: cover; background-position: center;
+      transition: transform .8s cubic-bezier(.16,1,.3,1);
+    }
+    .feature-split:hover .feature-img-bg { transform: scale(1.04); }
+    .feature-img-wrap::before {
+      content: ""; position: absolute; inset: 0; z-index: 1;
+      background: linear-gradient(135deg, rgba(77,212,255,.08), transparent 60%);
+    }
+    .feature-img-badge {
+      position: absolute; bottom: 1.5rem; left: 1.5rem; z-index: 2;
+      padding: .6rem 1.2rem; border-radius: 999px; font-size: .85rem; font-weight: 700;
+      background: rgba(7,18,32,.85); border: 1px solid rgba(77,212,255,.4);
+      color: #4dd4ff; backdrop-filter: blur(12px);
+    }
+    .feature-content { padding: .5rem 0; }
+    .feature-list { list-style: none; padding: 0; margin: 1.2rem 0; display: grid; gap: .7rem; }
+    .feature-list li {
+      display: flex; align-items: flex-start; gap: .8rem; font-size: .92rem; color: #b7c8da;
+    }
+    .feature-list li::before {
+      content: "✦"; color: #4dd4ff; flex-shrink: 0; margin-top: .1rem; font-size: .8rem;
+    }
+
+    /* Video showcase */
+    .video-showcase {
+      position: relative; border-radius: 2rem; overflow: hidden;
+      border: 1px solid rgba(77,212,255,.18); box-shadow: 0 32px 72px rgba(0,0,0,.5);
+      min-height: 420px; display: grid; place-items: center;
+      background: linear-gradient(135deg, rgba(7,18,32,.9), rgba(13,31,52,.8));
+    }
+    .video-showcase-content { text-align: center; z-index: 2; position: relative; padding: 2rem; }
+    .video-play-btn {
+      width: 80px; height: 80px; border-radius: 50%; margin: 0 auto 1.5rem;
+      background: linear-gradient(135deg, #4dd4ff, #7c5cff);
+      display: grid; place-items: center; cursor: pointer;
+      box-shadow: 0 16px 40px rgba(77,212,255,.4);
+      transition: transform .32s cubic-bezier(.16,1,.3,1), box-shadow .32s ease;
+      animation: pulsePlay 2.5s ease-in-out infinite;
+    }
+    .video-play-btn:hover { transform: scale(1.12); box-shadow: 0 24px 56px rgba(77,212,255,.5); }
+    @keyframes pulsePlay {
+      0%, 100% { box-shadow: 0 16px 40px rgba(77,212,255,.4), 0 0 0 0 rgba(77,212,255,.4); }
+      50% { box-shadow: 0 16px 40px rgba(77,212,255,.4), 0 0 0 16px rgba(77,212,255,0); }
+    }
+    .video-play-btn svg { width: 28px; height: 28px; fill: #fff; margin-left: 4px; }
+
+    /* Testimonial enhanced */
+    .testimonial-enhanced {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-top: 1.5rem;
+    }
+    .testi-card {
+      position: relative; padding: 1.8rem 1.5rem; border-radius: 1.6rem;
+      background: linear-gradient(145deg, rgba(12,26,46,.92), rgba(6,16,30,.88));
+      border: 1px solid rgba(255,255,255,.08); overflow: hidden;
+      transition: transform .32s cubic-bezier(.16,1,.3,1), box-shadow .32s ease;
+    }
+    .testi-card:hover { transform: translateY(-8px) scale(1.01); box-shadow: 0 32px 64px rgba(0,0,0,.4); border-color: rgba(77,212,255,.2); }
+    .testi-quote {
+      position: absolute; top: 1rem; right: 1.2rem; font-size: 5rem; line-height: 1;
+      color: rgba(77,212,255,.08); font-family: Georgia, serif; pointer-events: none;
+    }
+    .testi-stars { display: flex; gap: .2rem; margin-bottom: 1rem; }
+    .testi-star { color: #ff9a3d; font-size: 1rem; }
+    .testi-text { font-size: .9rem; color: #ccdff2; line-height: 1.75; font-style: italic; margin-bottom: 1.2rem; }
+    .testi-author { display: flex; align-items: center; gap: .9rem; }
+    .testi-avatar {
+      width: 48px; height: 48px; border-radius: 50%; flex-shrink: 0;
+      background: linear-gradient(135deg, #4dd4ff, #7c5cff);
+      display: grid; place-items: center; font-weight: 800; font-size: .95rem; color: #fff;
+    }
+    .testi-name { font-size: .92rem; font-weight: 700; color: #fff; }
+    .testi-role { font-size: .78rem; color: #4dd4ff; margin-top: .1rem; }
+
+    /* Scroll reveal base states */
+    [data-sr] { opacity: 0; transition: opacity .7s cubic-bezier(.16,1,.3,1), transform .7s cubic-bezier(.16,1,.3,1); }
+    [data-sr="up"] { transform: translateY(40px); }
+    [data-sr="left"] { transform: translateX(-40px); }
+    [data-sr="right"] { transform: translateX(40px); }
+    [data-sr="scale"] { transform: scale(.88); }
+    [data-sr].sr-visible { opacity: 1; transform: none; }
+
+    /* Mobile responsive for new sections */
+    @media (max-width: 960px) {
+      .why-grid { grid-template-columns: 1fr; }
+      .big-stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-strip { grid-template-columns: repeat(2, 1fr); }
+      .gallery-strip .gallery-item:last-child { display: none; }
+      .feature-split, .feature-split.reverse { grid-template-columns: 1fr; direction: ltr; }
+      .feature-img-wrap .feature-img-bg { min-height: 260px; }
+      .testimonial-enhanced { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 480px) {
+      .big-stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .gallery-strip { grid-template-columns: repeat(2, 1fr); }
+      .why-grid { grid-template-columns: 1fr; }
+      .testimonial-enhanced { grid-template-columns: 1fr; }
+    }
+
+    /* Glowing orb decorations */
+    .orb-decoration {
+      position: absolute; border-radius: 50%; filter: blur(60px);
+      pointer-events: none; z-index: 0;
+    }
+
+    /* Scroll progress indicator */
+    #scrollProgress {
+      position: fixed; top: 0; left: 0; height: 3px; z-index: 9999;
+      background: linear-gradient(90deg, #4dd4ff, #7c5cff, #ff5fa2);
+      width: 0%; transition: width .1s linear;
+    }
+
+    /* Back to top button */
+    #backToTop {
+      position: fixed; bottom: 2rem; right: 1.5rem; z-index: 5000;
+      width: 48px; height: 48px; border-radius: 50%;
+      background: linear-gradient(135deg, #4dd4ff, #7c5cff);
+      border: none; color: #fff; font-size: 1.2rem; cursor: pointer;
+      box-shadow: 0 8px 24px rgba(77,212,255,.4);
+      opacity: 0; transform: translateY(20px);
+      transition: opacity .3s ease, transform .3s ease;
+      display: grid; place-items: center;
+    }
+    #backToTop.show { opacity: 1; transform: translateY(0); }
+    #backToTop:hover { transform: translateY(-4px); box-shadow: 0 14px 32px rgba(77,212,255,.5); }
+
+    /* Section number badges */
+    .sec-eyebrow {
+      display: flex; align-items: center; gap: .8rem; margin-bottom: 1rem;
+    }
+    .sec-num {
+      width: 32px; height: 32px; border-radius: 50%;
+      background: linear-gradient(135deg, #4dd4ff, #7c5cff);
+      display: grid; place-items: center; font-size: .75rem; font-weight: 800; color: #fff;
+      flex-shrink: 0;
+    }
+
+    /* Horizontal scroll tabs */
+    .tab-nav {
+      display: flex; gap: .6rem; flex-wrap: wrap; margin-bottom: 1.5rem;
+    }
+    .tab-btn {
+      padding: .5rem 1.2rem; border-radius: 999px; border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04); color: #9dbdd8; font-size: .85rem; font-weight: 600;
+      cursor: pointer; transition: all .24s ease;
+    }
+    .tab-btn.active, .tab-btn:hover {
+      background: linear-gradient(135deg, rgba(77,212,255,.2), rgba(124,92,255,.15));
+      border-color: rgba(77,212,255,.4); color: #4dd4ff;
+    }
+
+    /* Service cards enhanced */
+    .service-card-v2 {
+      position: relative; padding: 2rem 1.5rem; border-radius: 1.8rem;
+      background: linear-gradient(145deg, rgba(12,26,46,.92), rgba(6,16,30,.88));
+      border: 1px solid rgba(255,255,255,.08); overflow: hidden;
+      transition: transform .32s cubic-bezier(.16,1,.3,1), box-shadow .32s ease, border-color .32s ease;
+      display: flex; flex-direction: column;
+    }
+    .service-card-v2::before {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(140deg, rgba(77,212,255,.12), transparent 40%);
+      opacity: 0; transition: opacity .32s ease; pointer-events: none;
+    }
+    .service-card-v2:hover {
+      transform: translateY(-12px) scale(1.01); box-shadow: 0 36px 72px rgba(0,0,0,.4);
+      border-color: rgba(77,212,255,.35);
+    }
+    .service-card-v2:hover::before { opacity: 1; }
+    .service-card-v2 > * { position: relative; z-index: 1; }
+    .scv2-icon {
+      width: 70px; height: 70px; border-radius: 1.4rem; margin-bottom: 1.3rem;
+      background: linear-gradient(135deg, rgba(77,212,255,.22), rgba(124,92,255,.18));
+      border: 1px solid rgba(77,212,255,.2); display: grid; place-items: center; font-size: 2rem;
+      transition: transform .32s cubic-bezier(.16,1,.3,1), box-shadow .32s ease;
+    }
+    .service-card-v2:hover .scv2-icon { transform: scale(1.12) rotate(-8deg); box-shadow: 0 14px 32px rgba(77,212,255,.3); }
+    .scv2-title { font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: .5rem; }
+    .scv2-desc { font-size: .88rem; color: #9dbdd8; line-height: 1.65; margin-bottom: 1rem; flex: 1; }
+    .scv2-list { list-style: none; padding: 0; display: grid; gap: .4rem; }
+    .scv2-list li { font-size: .83rem; color: #b7c8da; display: flex; align-items: center; gap: .5rem; }
+    .scv2-list li::before { content: "✓"; color: #4dd4ff; font-weight: 700; }
+    .scv2-link {
+      margin-top: 1.2rem; display: inline-flex; align-items: center; gap: .4rem;
+      font-size: .85rem; font-weight: 700; color: #4dd4ff;
+      transition: gap .2s ease, color .2s ease;
+    }
+    .service-card-v2:hover .scv2-link { gap: .7rem; color: #7c5cff; }
+
+    /* Partners / Clients enhanced marquee */
+    .partner-pill {
+      display: inline-flex; align-items: center; gap: .6rem; padding: .55rem 1.2rem;
+      border-radius: 999px; background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1); font-size: .88rem; font-weight: 600;
+      color: #c8ddf0; white-space: nowrap;
+    }
+    .partner-pill-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+
+    /* CTA enhanced */
+    .cta-enhanced {
+      position: relative; overflow: hidden; text-align: center; padding: clamp(3rem,6vw,5rem) clamp(1.5rem,4vw,3rem);
+      border-radius: 2.4rem;
+      background: linear-gradient(135deg, rgba(77,212,255,.12), rgba(124,92,255,.12), rgba(0,215,163,.08));
+      border: 1px solid rgba(77,212,255,.2);
+    }
+    .cta-orb {
+      position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none;
+    }
+    .cta-orb-1 { width: 400px; height: 400px; background: rgba(77,212,255,.12); top: -20%; left: -10%; }
+    .cta-orb-2 { width: 300px; height: 300px; background: rgba(124,92,255,.10); bottom: -20%; right: -5%; }
+
+    /* Blog / news teaser cards */
+    .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2rem; margin-top: 1.5rem; }
+    .news-card {
+      border-radius: 1.6rem; overflow: hidden;
+      background: linear-gradient(145deg, rgba(12,26,46,.92), rgba(6,16,30,.88));
+      border: 1px solid rgba(255,255,255,.08);
+      transition: transform .32s cubic-bezier(.16,1,.3,1), box-shadow .32s ease;
+    }
+    .news-card:hover { transform: translateY(-8px) scale(1.01); box-shadow: 0 32px 64px rgba(0,0,0,.4); border-color: rgba(77,212,255,.25); }
+    .news-img {
+      width: 100%; aspect-ratio: 16/9; object-fit: cover; display: block;
+      background: linear-gradient(135deg, rgba(12,26,50,.9), rgba(77,212,255,.1));
+      min-height: 160px; position: relative; overflow: hidden;
+    }
+    .news-img-inner {
+      width: 100%; height: 100%; background-size: cover; background-position: center;
+      transition: transform .5s cubic-bezier(.16,1,.3,1);
+    }
+    .news-card:hover .news-img-inner { transform: scale(1.06); }
+    .news-cat {
+      position: absolute; top: .8rem; left: .8rem;
+      padding: .25rem .75rem; border-radius: 999px; font-size: .72rem; font-weight: 700;
+      backdrop-filter: blur(8px);
+    }
+    .news-body { padding: 1.2rem 1.3rem 1.5rem; }
+    .news-date { font-size: .75rem; color: #4dd4ff; margin-bottom: .5rem; }
+    .news-title { font-size: .98rem; font-weight: 700; color: #fff; line-height: 1.35; margin-bottom: .5rem; }
+    .news-excerpt { font-size: .82rem; color: #9dbdd8; line-height: 1.6; }
+    @media (max-width: 960px) { .news-grid { grid-template-columns: 1fr; } }
+
+    /* Live counter animation */
+    .animated-counter { transition: all .3s ease; }
+  </style>
 </head>
 <body>
 
+  <!-- Scroll progress bar -->
+  <div id="scrollProgress"></div>
+
+  <!-- Back to top button -->
+  <button id="backToTop" aria-label="Back to top">&#8679;</button>
+
+  <!-- Loader -->
   <div class="loader" id="loader">
     <div class="loader-box">
       <div class="loader-ring" aria-hidden="true"></div>
@@ -19,6 +386,40 @@
     </div>
   </div>
 
+  <!-- Login Modal -->
+  <div class="modal-backdrop" id="loginBackdrop" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+    <div class="modal" id="loginModal">
+      <button class="modal-close" id="modalClose" aria-label="Close login">&times;</button>
+      <div class="modal-logo" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M12 2a5 5 0 1 1 0 10A5 5 0 0 1 12 2zm0 12c5.33 0 8 2.67 8 4v2H4v-2c0-1.33 2.67-4 8-4z"/></svg>
+      </div>
+      <h2 id="loginTitle">Welcome back</h2>
+      <p class="modal-sub">Sign in to your Stackly account</p>
+      <form class="login-form" id="loginForm" novalidate>
+        <div class="login-field">
+          <label for="loginEmail">Email address</label>
+          <input type="email" id="loginEmail" name="loginEmail" placeholder="official@company.com" autocomplete="email" />
+          <span class="field-error" id="emailErr">Please enter a valid email address.</span>
+        </div>
+        <div class="login-field">
+          <label for="loginPassword">Password</label>
+          <input type="password" id="loginPassword" name="loginPassword" placeholder="Enter your password" autocomplete="current-password" />
+          <span class="field-error" id="passErr">Password must be at least 6 characters.</span>
+        </div>
+        <div class="login-form-footer">
+          <label style="display:flex;align-items:center;gap:.4rem;font-size:.83rem;color:#8aacc8;cursor:pointer">
+            <input type="checkbox" id="rememberMe" style="width:auto;min-height:auto;accent-color:#4dd4ff" />
+            Remember me
+          </label>
+          <a href="404.html">Forgot password?</a>
+        </div>
+        <button class="btn-login-submit" type="submit" id="loginSubmitBtn">Sign In</button>
+        <p class="login-divider">Don't have an account? <a href="index.html#cta-section" style="color:#4dd4ff;font-weight:700;">Contact us</a></p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Header -->
   <header class="header">
     <div class="nav-wrap nav-wrap--video">
       <video class="nav-video" id="navVideo" autoplay muted loop playsinline aria-hidden="true" onerror="this.style.display='none'">
@@ -30,17 +431,17 @@
           <img src="./assets/logo-placeholder.webp" alt="Stackly logo" width="346" height="100" loading="eager" decoding="async" />
         </a>
         <div class="nav-links" id="navLinks">
-          <a href="index.html" data-page="home">Home</a>
-          <a href="about.html" data-page="about">About Us</a>
-          <a href="services.html" data-page="services">Our Services</a>
-          <a href="projects.html" data-page="projects">Portfolio</a>
-          <a href="contact.html" data-page="contact">Contact Us</a>
+          <a href="index.html" class="active">Home</a>
+          <a href="404.html">About Us</a>
+          <a href="404.html">Our Services</a>
+          <a href="404.html">Portfolio</a>
+          <a href="404.html">Contact Us</a>
         </div>
         <div class="nav-right">
-          <a class="btn-login" href="login.html" aria-label="Login to your account">
+          <button class="btn-login" id="openLoginBtn" type="button" aria-label="Login to your account">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 12c5.33 0 8 2.67 8 4v2H4v-2c0-1.33 2.67-4 8-4z"/></svg>
             <span>Login</span>
-          </a>
+          </button>
           <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false">&#9776;</button>
         </div>
       </nav>
@@ -48,7 +449,8 @@
   </header>
 
   <main id="home">
-    <!-- HERO SECTION -->
+
+    <!-- ===== HERO SECTION ===== -->
     <section class="hero">
       <div class="hero-shell">
         <div class="hero-particles" aria-hidden="true">
@@ -57,31 +459,37 @@
         </div>
         <div class="hero-grid">
           <div>
-            <span class="badge" data-reveal="up" data-delay="1">Master Builders &amp; Engineers</span>
+            <span class="badge" data-reveal="up" data-delay="1">🏗️ Master Builders &amp; Engineers</span>
             <h1 data-reveal="up" data-delay="2">Constructing landmark structures with architectural integrity.</h1>
             <p data-reveal="up" data-delay="3">Stackly specializes in comprehensive construction management, structural engineering, and high-end project delivery for urban developments and industrial facilities across Tamil Nadu and South India.</p>
             <div class="hero-actions" data-reveal="up" data-delay="4">
-              <a class="btn btn-primary" href="contact.html">Request a Quote</a>
-              <a class="btn btn-secondary" href="projects.html">View Portfolio</a>
-              <a class="btn btn-ghost" href="404.html">Company Profile</a>
+              <a class="btn btn-primary" href="404.html">Request a Quote</a>
+              <a class="btn btn-secondary" href="404.html">View Portfolio</a>
+              <a class="btn btn-ghost" href="404.html">Company Profile ↗</a>
             </div>
             <div class="hero-stats">
-              <article class="hero-stat" data-reveal="up" data-delay="4"><strong>180+</strong><span>Landmarks completed</span></article>
-              <article class="hero-stat" data-reveal="up" data-delay="5"><strong>25+</strong><span>Years of expertise</span></article>
-              <article class="hero-stat" data-reveal="up" data-delay="6"><strong>24/7</strong><span>Site supervision</span></article>
+              <article class="hero-stat" data-reveal="up" data-delay="4">
+                <strong class="animated-counter" data-target="180">0</strong><span>Landmarks completed</span>
+              </article>
+              <article class="hero-stat" data-reveal="up" data-delay="5">
+                <strong class="animated-counter" data-target="25">0</strong><span>Years of expertise</span>
+              </article>
+              <article class="hero-stat" data-reveal="up" data-delay="6">
+                <strong>24/7</strong><span>Site supervision</span>
+              </article>
             </div>
           </div>
           <div class="hero-visual" aria-hidden="true">
             <article class="float-card float-card--top" data-reveal="right" data-delay="3">
-              <h3>Commercial</h3>
+              <h3>🏢 Commercial</h3>
               <p>Towers with global standards. IT parks, malls, hospitals.</p>
             </article>
             <article class="float-card float-card--middle" data-reveal="left" data-delay="4">
-              <h3>Residential</h3>
+              <h3>🏡 Residential</h3>
               <p>Luxury villas &amp; townships. 150+ homes delivered.</p>
             </article>
             <article class="float-card float-card--bottom" data-reveal="right" data-delay="5">
-              <h3>Industrial</h3>
+              <h3>🏭 Industrial</h3>
               <p>Plants for heavy operations. PEB structures, warehouses.</p>
             </article>
           </div>
@@ -89,265 +497,394 @@
       </div>
     </section>
 
-    <!-- CLIENTS MARQUEE -->
+    <!-- ===== MARQUEE - CLIENTS ===== -->
     <section class="section" style="padding:1.5rem 0">
       <div class="container">
-        <p style="text-align:center;color:#8aacc8;font-size:.85rem;margin-bottom:1rem;letter-spacing:.1em;text-transform:uppercase">Trusted by Industry Leaders</p>
+        <p style="text-align:center;color:#8aacc8;font-size:.82rem;margin-bottom:1rem;letter-spacing:.14em;text-transform:uppercase;">✦ Trusted by Industry Leaders Across South India ✦</p>
         <div class="marquee-container">
           <div class="marquee-content">
-            <span class="marquee-item"><svg viewBox="0 0 80 24"><text x="0" y="18" fill="currentColor" font-size="14" font-weight="700" font-family="Poppins">TCS</text></svg></span>
-            <span class="marquee-item"><svg viewBox="0 0 80 24"><text x="0" y="18" fill="currentColor" font-size="14" font-weight="700" font-family="Poppins">Infosys</text></svg></span>
-            <span class="marquee-item"><svg viewBox="0 0 80 24"><text x="0" y="18" fill="currentColor" font-size="14" font-weight="700" font-family="Poppins">Wipro</text></svg></span>
-            <span class="marquee-item"><svg viewBox="0 0 100 24"><text x="0" y="18" fill="currentColor" font-size="14" font-weight="700" font-family="Poppins">UltraTech</text></svg></span>
-            <span class="marquee-item"><svg viewBox="0 0 100 24"><text x="0" y="18" fill="currentColor" font-size="14" font-weight="700" font-family="Poppins">TATA Steel</text></svg></span>
-            <span class="marquee-item"><svg viewBox="0 0 80 24"><text x="0" y="18" fill="currentColor" font-size="14" font-weight="700" font-family="Poppins">NHAI</text></svg></span>
-            <span class="marquee-item"><svg viewBox="0 0 120 24"><text x="0" y="18" fill="currentColor" font-size="13" font-weight="700" font-family="Poppins">TN Government</text></svg></span>
-            <span class="marquee-item"><svg viewBox="0 0 60 24"><text x="0" y="18" fill="currentColor" font-size="14" font-weight="700" font-family="Poppins">L&amp;T</text></svg></span>
-            <span class="marquee-item"><svg viewBox="0 0 80 24"><text x="0" y="18" fill="currentColor" font-size="14" font-weight="700" font-family="Poppins">TCS</text></svg></span>
-            <span class="marquee-item"><svg viewBox="0 0 80 24"><text x="0" y="18" fill="currentColor" font-size="14" font-weight="700" font-family="Poppins">Infosys</text></svg></span>
-            <span class="marquee-item"><svg viewBox="0 0 80 24"><text x="0" y="18" fill="currentColor" font-size="14" font-weight="700" font-family="Poppins">Wipro</text></svg></span>
-            <span class="marquee-item"><svg viewBox="0 0 100 24"><text x="0" y="18" fill="currentColor" font-size="14" font-weight="700" font-family="Poppins">UltraTech</text></svg></span>
-            <span class="marquee-item"><svg viewBox="0 0 100 24"><text x="0" y="18" fill="currentColor" font-size="14" font-weight="700" font-family="Poppins">TATA Steel</text></svg></span>
-            <span class="marquee-item"><svg viewBox="0 0 80 24"><text x="0" y="18" fill="currentColor" font-size="14" font-weight="700" font-family="Poppins">NHAI</text></svg></span>
-            <span class="marquee-item"><svg viewBox="0 0 120 24"><text x="0" y="18" fill="currentColor" font-size="13" font-weight="700" font-family="Poppins">TN Government</text></svg></span>
-            <span class="marquee-item"><svg viewBox="0 0 60 24"><text x="0" y="18" fill="currentColor" font-size="14" font-weight="700" font-family="Poppins">L&amp;T</text></svg></span>
+            <span class="partner-pill"><span class="partner-pill-dot" style="background:#4dd4ff"></span>TCS</span>
+            <span class="partner-pill"><span class="partner-pill-dot" style="background:#7c5cff"></span>Infosys</span>
+            <span class="partner-pill"><span class="partner-pill-dot" style="background:#00d7a3"></span>Wipro</span>
+            <span class="partner-pill"><span class="partner-pill-dot" style="background:#ff9a3d"></span>UltraTech Cement</span>
+            <span class="partner-pill"><span class="partner-pill-dot" style="background:#ff5fa2"></span>TATA Steel</span>
+            <span class="partner-pill"><span class="partner-pill-dot" style="background:#4dd4ff"></span>NHAI</span>
+            <span class="partner-pill"><span class="partner-pill-dot" style="background:#7c5cff"></span>TN Government</span>
+            <span class="partner-pill"><span class="partner-pill-dot" style="background:#00d7a3"></span>L&amp;T</span>
+            <span class="partner-pill"><span class="partner-pill-dot" style="background:#ff9a3d"></span>Shapoorji Pallonji</span>
+            <span class="partner-pill"><span class="partner-pill-dot" style="background:#4dd4ff"></span>TCS</span>
+            <span class="partner-pill"><span class="partner-pill-dot" style="background:#7c5cff"></span>Infosys</span>
+            <span class="partner-pill"><span class="partner-pill-dot" style="background:#00d7a3"></span>Wipro</span>
+            <span class="partner-pill"><span class="partner-pill-dot" style="background:#ff9a3d"></span>UltraTech Cement</span>
+            <span class="partner-pill"><span class="partner-pill-dot" style="background:#ff5fa2"></span>TATA Steel</span>
+            <span class="partner-pill"><span class="partner-pill-dot" style="background:#4dd4ff"></span>NHAI</span>
+            <span class="partner-pill"><span class="partner-pill-dot" style="background:#7c5cff"></span>TN Government</span>
+            <span class="partner-pill"><span class="partner-pill-dot" style="background:#00d7a3"></span>L&amp;T</span>
+            <span class="partner-pill"><span class="partner-pill-dot" style="background:#ff9a3d"></span>Shapoorji Pallonji</span>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- FEATURED PROJECTS -->
+    <!-- ===== BIG STATS ===== -->
+    <section class="section" style="padding-top:0">
+      <div class="container">
+        <div class="big-stats-grid">
+          <div class="big-stat-card" data-sr="scale">
+            <div class="bsc-icon">🏗️</div>
+            <div class="bsc-num"><span class="animated-counter" data-target="450" data-suffix="+">0</span></div>
+            <div class="bsc-label">Projects Delivered</div>
+          </div>
+          <div class="big-stat-card" data-sr="scale" style="transition-delay:.1s">
+            <div class="bsc-icon">👷</div>
+            <div class="bsc-num"><span class="animated-counter" data-target="200" data-suffix="+">0</span></div>
+            <div class="bsc-label">Expert Professionals</div>
+          </div>
+          <div class="big-stat-card" data-sr="scale" style="transition-delay:.2s">
+            <div class="bsc-icon">🏆</div>
+            <div class="bsc-num"><span class="animated-counter" data-target="15" data-suffix="+">0</span></div>
+            <div class="bsc-label">Awards Won</div>
+          </div>
+          <div class="big-stat-card" data-sr="scale" style="transition-delay:.3s">
+            <div class="bsc-icon">⭐</div>
+            <div class="bsc-num"><span class="animated-counter" data-target="98" data-suffix="%">0</span></div>
+            <div class="bsc-label">Client Satisfaction</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FEATURED PROJECTS ===== -->
     <section class="section">
       <div class="container section-shell">
         <div class="section-inner">
-          <div style="margin-bottom:1.4rem;text-align:center;" data-reveal="up">
-            <span class="badge">Featured Projects</span>
+          <div style="margin-bottom:1.4rem;text-align:center;" data-sr="up">
+            <span class="badge">🏙️ Featured Projects</span>
             <h2 class="title">Recent landmarks delivered with precision.</h2>
-            <p class="copy" style="max-width:60ch;margin:.5rem auto 0">From luxury residential towers to massive infrastructure projects, we bring the same level of dedication and expertise to every build.</p>
+            <p class="copy" style="max-width:60ch;margin:.5rem auto 0">From luxury residential towers to massive infrastructure, we bring the same dedication to every build.</p>
           </div>
           <div class="featured-grid-jigjag">
-
-            <article class="featured-card" data-reveal="up" data-delay="1">
-              <img src="./assets/skyscape.webp" alt="Skyscape Residency" onerror="this.onerror=null;this.src='./assets/project-highrise.webp'">
+            <article class="featured-card" data-sr="up">
+              <img src="./assets/skyscape.webp" alt="Skyscape Residency" loading="lazy" onerror="this.onerror=null;this.src='./assets/project-highrise.webp'">
               <div class="featured-content">
                 <h3>Skyscape Residency</h3>
                 <p>12-story &bull; 120 units &bull; Dindigul</p>
                 <div class="project-meta">
-                  <span class="meta-tag">Residential</span>
-                  <span class="meta-status complete">Completed</span>
+                  <span class="meta-tag">🏠 Residential</span>
+                  <span class="meta-status complete">✓ Completed</span>
                 </div>
                 <p class="project-desc">Premium residential towers with modern amenities, smart home integrations, and panoramic city views. Delivered ahead of schedule with 100% occupancy.</p>
               </div>
             </article>
-
-            <article class="featured-card" data-reveal="up" data-delay="2">
-              <img src="./assets/project-detail.webp" alt="NH-44 Bridge Project">
+            <article class="featured-card" data-sr="up" style="transition-delay:.08s">
+              <img src="./assets/project-detail.webp" alt="NH-44 Bridge Project" loading="lazy">
               <div class="featured-content">
                 <h3>NH-44 Bridge Project</h3>
                 <p>1.2km &bull; 6-lane &bull; Trichy</p>
                 <div class="project-meta">
-                  <span class="meta-tag">Infrastructure</span>
+                  <span class="meta-tag">🌉 Infrastructure</span>
                   <span class="meta-status">2025</span>
                 </div>
                 <p class="project-desc">Six-lane cable-stayed bridge spanning the Cauvery river with seismic-resistant design and LED-lit pylons. Zero accident record throughout construction.</p>
               </div>
             </article>
-
-            <article class="featured-card" data-reveal="up" data-delay="3">
-              <img src="./assets/photo-1486406146926-c627a92ad1ab.webp" alt="Tech Valley IT Park" onerror="this.onerror=null;this.src='./assets/project-commercial.webp'">
+            <article class="featured-card" data-sr="up" style="transition-delay:.16s">
+              <img src="./assets/photo-1486406146926-c627a92ad1ab.webp" alt="Tech Valley IT Park" loading="lazy" onerror="this.onerror=null;this.src='./assets/project-commercial.webp'">
               <div class="featured-content">
                 <h3>Tech Valley IT Park</h3>
                 <p>10-acre &bull; 8 towers &bull; Coimbatore</p>
                 <div class="project-meta">
-                  <span class="meta-tag">IT Park</span>
-                  <span class="meta-status complete">Completed</span>
+                  <span class="meta-tag">💻 IT Park</span>
+                  <span class="meta-status complete">✓ Completed</span>
                 </div>
                 <p class="project-desc">LEED Platinum certified tech campus with fiber-optic backbone, data centers, and 40% green landscape cover. Home to 15,000+ IT professionals.</p>
               </div>
             </article>
-
-            <article class="featured-card featured-video-card" data-reveal="up" data-delay="4">
+            <article class="featured-card featured-video-card" data-sr="up" style="transition-delay:.24s">
               <div class="featured-video">
                 <video autoplay muted loop playsinline onerror="this.style.display='none'">
                   <source src="./assets/nav-video1.mp4" type="video/mp4" />
                 </video>
-                <div class="video-overlay"><span class="play-badge">LIVE PROJECT</span></div>
+                <div class="video-overlay"><span class="play-badge">🔴 LIVE PROJECT</span></div>
               </div>
               <div class="featured-content">
                 <h3>Metropolitan Business Park</h3>
-                <p>5 lakh sqft &bull; LEED Gold Certified &bull; Chennai</p>
+                <p>5 lakh sqft &bull; LEED Gold &bull; Chennai</p>
                 <div class="project-meta">
-                  <span class="meta-tag">Commercial</span>
+                  <span class="meta-tag">🏢 Commercial</span>
                   <span class="meta-status">Ongoing &bull; Q4 2026</span>
                 </div>
                 <p class="project-desc">State-of-the-art corporate campus with 5 towers, helipad, and sustainable infrastructure. Zero-discharge water system and 40% green cover.</p>
               </div>
             </article>
-
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SERVICES PREVIEW -->
-    <section class="section">
-      <div class="container section-shell">
-        <div class="section-inner">
-          <div style="text-align:center;margin-bottom:1.5rem" data-reveal="up">
-            <span class="badge">What We Do</span>
-            <h2 class="title">End-to-End Construction Solutions</h2>
-            <p class="copy" style="max-width:60ch;margin:.5rem auto 0">From soil testing to final handover, we handle every phase with precision. 500+ crore worth projects delivered on time.</p>
-          </div>
-          <div class="grid-3">
-            <article class="service-card" data-reveal="up" data-delay="1">
-              <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M3 20h18v2H3zM5 18V8l7-5 7 5v10h-2v-9.03l-5-3.58-5 3.58V18z"/></svg></div>
-              <h3>Residential Construction</h3>
-              <p class="copy">Individual homes, duplex villas, apartment complexes. 2BHK starting 25 lakhs. Free plan approval, vastu consultation, bank loan support.</p>
-              <ul>
-                <li>&#10003; Free 3D design &amp; walkthrough</li>
-                <li>&#10003; Branded materials: UltraTech, TATA Steel</li>
-                <li>&#10003; 10-year structural warranty</li>
-                <li>&#10003; EMI option available</li>
-              </ul>
-            </article>
-            <article class="service-card" data-reveal="up" data-delay="2">
-              <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M2 20h20v2H2zm3-2V8h3v10zm5 0V4h4v14zm6 0v-7h3v7z"/></svg></div>
-              <h3>Commercial Buildings</h3>
-              <p class="copy">Office complexes, shopping malls, hotels, hospitals, schools. CMDA/DTCP approved plans. Fire safety NOC, lift, generator backup.</p>
-              <ul>
-                <li>&#10003; IIT structural design</li>
-                <li>&#10003; MEP services included</li>
-                <li>&#10003; On-time delivery guarantee</li>
-                <li>&#10003; Green building certified</li>
-              </ul>
-            </article>
-            <article class="service-card" data-reveal="up" data-delay="3">
-              <div class="icon-box"><svg viewBox="0 0 24 24"><path d="M12 3 4 9v12h6v-6h4v6h6V9z"/></svg></div>
-              <h3>Industrial Projects</h3>
-              <p class="copy">Factories, warehouses, cold storage, textile mills. Heavy-duty flooring 5-ton capacity, EOT crane provision, 3-phase power, ETP plant.</p>
-              <ul>
-                <li>&#10003; PEB structure option</li>
-                <li>&#10003; Pollution clearance support</li>
-                <li>&#10003; 24/7 construction</li>
-                <li>&#10003; Export quality standards</li>
-              </ul>
-            </article>
           </div>
           <div style="text-align:center;margin-top:1.5rem">
-            <a href="services.html" class="btn btn-secondary">View All Services</a>
+            <a href="404.html" class="btn btn-secondary">View All Projects →</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- WHY CHOOSE US -->
+    <!-- ===== SERVICES - ENHANCED ===== -->
     <section class="section">
       <div class="container section-shell">
         <div class="section-inner">
-          <span class="eyebrow" data-reveal="up">Our Core Values</span>
-          <h2 class="title" data-reveal="up" data-delay="1">Engineering a sustainable future through structural innovation.</h2>
-          <p class="copy" data-reveal="up" data-delay="2">We prioritize durability and safety in every project, ensuring that our architectural designs translate into lasting physical legacies. Our ISO 9001:2015 certified processes guarantee consistent quality.</p>
-
-          <div class="stats-row" data-reveal="up" data-delay="2">
-            <div class="stat-box">
-              <div class="stat-num">450+</div>
-              <div class="stat-label">Projects Delivered</div>
+          <div style="text-align:center;margin-bottom:1.8rem" data-sr="up">
+            <span class="badge">⚙️ What We Build</span>
+            <h2 class="title">End-to-End Construction Solutions</h2>
+            <p class="copy" style="max-width:60ch;margin:.5rem auto 0">From soil testing to final handover — every phase handled with precision. ₹500+ crore projects delivered on time.</p>
+          </div>
+          <div class="why-grid">
+            <div class="service-card-v2" data-sr="up">
+              <div class="scv2-icon">🏠</div>
+              <div class="scv2-title">Residential Construction</div>
+              <p class="scv2-desc">Individual homes, duplex villas, apartment complexes. 2BHK starting ₹25 lakhs. Free plan approval, vastu consultation, bank loan support.</p>
+              <ul class="scv2-list">
+                <li>Free 3D design &amp; virtual walkthrough</li>
+                <li>Branded materials: UltraTech, TATA Steel</li>
+                <li>10-year structural warranty</li>
+                <li>EMI option available</li>
+              </ul>
+              <a href="404.html" class="scv2-link">Learn more →</a>
             </div>
-            <div class="stat-box">
-              <div class="stat-num">200+</div>
-              <div class="stat-label">Expert Team</div>
+            <div class="service-card-v2" data-sr="up" style="transition-delay:.1s">
+              <div class="scv2-icon">🏢</div>
+              <div class="scv2-title">Commercial Buildings</div>
+              <p class="scv2-desc">Office complexes, shopping malls, hotels, hospitals, schools. CMDA/DTCP approved plans. Fire safety NOC, lift, generator backup included.</p>
+              <ul class="scv2-list">
+                <li>IIT structural design team</li>
+                <li>MEP services included</li>
+                <li>On-time delivery guarantee</li>
+                <li>Green building certified</li>
+              </ul>
+              <a href="404.html" class="scv2-link">Learn more →</a>
             </div>
-            <div class="stat-box">
-              <div class="stat-num">15+</div>
-              <div class="stat-label">Awards Won</div>
-            </div>
-            <div class="stat-box">
-              <div class="stat-num">98%</div>
-              <div class="stat-label">Client Satisfaction</div>
+            <div class="service-card-v2" data-sr="up" style="transition-delay:.2s">
+              <div class="scv2-icon">🏭</div>
+              <div class="scv2-title">Industrial Projects</div>
+              <p class="scv2-desc">Factories, warehouses, cold storage, textile mills. Heavy-duty flooring 5-ton capacity, EOT crane provision, 3-phase power, ETP plant.</p>
+              <ul class="scv2-list">
+                <li>PEB structure option</li>
+                <li>Pollution clearance support</li>
+                <li>24/7 construction schedule</li>
+                <li>Export quality standards</li>
+              </ul>
+              <a href="404.html" class="scv2-link">Learn more →</a>
             </div>
           </div>
-
-          <div class="highlight-strip">
-            <article class="highlight-item" data-reveal="scale" data-delay="2"><strong>Integrity</strong><span>Honest management</span></article>
-            <article class="highlight-item" data-reveal="scale" data-delay="3"><strong>Quality</strong><span>Premium materials</span></article>
-            <article class="highlight-item" data-reveal="scale" data-delay="4"><strong>Safety</strong><span>Zero-compromise</span></article>
-            <article class="highlight-item" data-reveal="scale" data-delay="5"><strong>Support</strong><span>End-to-end help</span></article>
+          <div style="text-align:center;margin-top:1.5rem">
+            <a href="404.html" class="btn btn-secondary">View All Services →</a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- PROCESS -->
+    <!-- ===== FEATURE SPLIT - WHY CHOOSE US ===== -->
     <section class="section">
       <div class="container section-shell">
         <div class="section-inner">
-          <div style="text-align:center;margin-bottom:1rem" data-reveal="up">
-            <span class="badge">How We Work</span>
+          <div data-sr="up" style="text-align:center;margin-bottom:2rem;">
+            <span class="badge">💡 Why Stackly</span>
+            <h2 class="title">Engineering a sustainable future through structural innovation.</h2>
+          </div>
+          <div class="feature-split" data-sr="up">
+            <div class="feature-img-wrap">
+              <div class="feature-img-bg" style="background: linear-gradient(180deg,rgba(8,21,38,.15),rgba(8,21,38,.3)),url('./assets/project-highrise.webp') center/cover no-repeat;"></div>
+              <span class="feature-img-badge">🏗️ ISO 9001:2015 Certified</span>
+            </div>
+            <div class="feature-content">
+              <span class="badge" style="margin-bottom:1rem;">⭐ Our Core Values</span>
+              <h3 class="title" style="font-size:clamp(1.5rem,2.5vw,2.2rem);">Built on trust, precision, and zero-compromise quality.</h3>
+              <p class="copy">Our ISO 9001:2015 certified processes guarantee consistent quality across every project. With 25+ years in the field, we've developed systems that minimize waste, reduce delays, and exceed client expectations.</p>
+              <ul class="feature-list">
+                <li>Zero-accident safety record across 450+ projects</li>
+                <li>Own fleet of 15 JCBs, 8 tower cranes — 40% faster delivery</li>
+                <li>BIM &amp; 3D modeling for zero rework guarantee</li>
+                <li>Dedicated post-handover support &amp; maintenance</li>
+                <li>IGBC Platinum rated green building specialists</li>
+              </ul>
+              <div style="display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.5rem;">
+                <a href="404.html" class="btn btn-primary">About Us →</a>
+                <a href="404.html" class="btn btn-ghost">Our Certifications</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== WHY US - CARDS ===== -->
+    <section class="section">
+      <div class="container section-shell">
+        <div class="section-inner">
+          <div style="text-align:center;margin-bottom:1.8rem" data-sr="up">
+            <span class="badge">🔑 Key Advantages</span>
+            <h2 class="title">What makes us the #1 choice in Tamil Nadu</h2>
+          </div>
+          <div class="why-grid">
+            <div class="why-card" data-sr="up">
+              <div class="why-icon">🛡️</div>
+              <h3>Zero-Accident Safety Record</h3>
+              <p>Industry-leading safety protocols enforced at every site. All workers are trained, certified, and equipped with full PPE. We've maintained a spotless safety record across all 450+ projects.</p>
+              <span class="why-badge">✓ OSHA Standards</span>
+            </div>
+            <div class="why-card" data-sr="up" style="transition-delay:.12s">
+              <div class="why-icon">⚡</div>
+              <h3>40% Faster Delivery</h3>
+              <p>Our owned fleet of 50+ heavy equipment means no rental delays. Combined with BIM technology and lean construction methods, we consistently deliver ahead of schedule.</p>
+              <span class="why-badge">✓ On-Time Guarantee</span>
+            </div>
+            <div class="why-card" data-sr="up" style="transition-delay:.24s">
+              <div class="why-icon">💎</div>
+              <h3>Premium Material Standards</h3>
+              <p>Only branded materials — UltraTech cement, TATA Steel, Kajaria tiles. Every batch is QC-tested before use. Our 10-year structural warranty speaks for our confidence.</p>
+              <span class="why-badge">✓ ISO 9001:2015</span>
+            </div>
+            <div class="why-card" data-sr="up" style="transition-delay:.08s">
+              <div class="why-icon">🏅</div>
+              <h3>IIT &amp; NIT Certified Engineers</h3>
+              <p>Our design team includes IIT Madras and NIT Trichy graduates. Every structural drawing goes through 3 layers of review. Academic excellence meets practical field experience.</p>
+              <span class="why-badge">✓ 200+ Expert Team</span>
+            </div>
+            <div class="why-card" data-sr="up" style="transition-delay:.2s">
+              <div class="why-icon">📱</div>
+              <h3>Real-Time Project Tracking</h3>
+              <p>Clients get a dedicated portal with daily photo updates, milestone tracking, cost breakdown, and direct chat with the project manager. Total transparency, zero surprises.</p>
+              <span class="why-badge">✓ 24/7 Dashboard</span>
+            </div>
+            <div class="why-card" data-sr="up" style="transition-delay:.32s">
+              <div class="why-icon">🌱</div>
+              <h3>Sustainable Green Building</h3>
+              <p>IGBC Platinum rated specialists. Rainwater harvesting, solar integration, waste management systems. Building for tomorrow while reducing environmental impact today.</p>
+              <span class="why-badge">✓ LEED Certified</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PROJECT GALLERY STRIP ===== -->
+    <section class="section">
+      <div class="container section-shell">
+        <div class="section-inner">
+          <div style="text-align:center;margin-bottom:1.5rem" data-sr="up">
+            <span class="badge">📸 Our Work</span>
+            <h2 class="title">A glimpse into our landmark portfolio</h2>
+            <p class="copy" style="max-width:55ch;margin:.5rem auto 0">Explore some of our finest projects spanning across Tamil Nadu and South India.</p>
+          </div>
+          <div class="gallery-strip" data-sr="up">
+            <div class="gallery-item">
+              <div class="gallery-bg" style="background:url('./assets/project-highrise.webp') center/cover no-repeat;"></div>
+              <div class="gallery-label">Skyscape Residency, Dindigul</div>
+            </div>
+            <div class="gallery-item">
+              <div class="gallery-bg" style="background:url('./assets/project-detail.webp') center/cover no-repeat;"></div>
+              <div class="gallery-label">NH-44 Bridge, Trichy</div>
+            </div>
+            <div class="gallery-item">
+              <div class="gallery-bg" style="background:url('./assets/coding.webp') center/cover no-repeat;"></div>
+              <div class="gallery-label">Tech Valley IT Park, Coimbatore</div>
+            </div>
+            <div class="gallery-item">
+              <div class="gallery-bg" style="background:url('./assets/pc.webp') center/cover no-repeat;"></div>
+              <div class="gallery-label">Metropolitan Business Park, Chennai</div>
+            </div>
+            <div class="gallery-item">
+              <div class="gallery-bg" style="background:url('./assets/photo-1486406146926-c627a92ad1ab.webp') center/cover no-repeat;"></div>
+              <div class="gallery-label">Industrial Warehouse, Salem</div>
+            </div>
+          </div>
+          <div style="text-align:center;margin-top:1.5rem">
+            <a href="404.html" class="btn btn-ghost">View Full Portfolio →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== HOW WE WORK ===== -->
+    <section class="section">
+      <div class="container section-shell">
+        <div class="section-inner">
+          <div style="text-align:center;margin-bottom:1rem" data-sr="up">
+            <span class="badge">🔄 Process</span>
             <h2 class="title">Our 4-Step Construction Process</h2>
             <p class="copy" style="max-width:60ch;margin:.5rem auto 0">Streamlined workflow ensuring transparency, quality control, and on-time delivery at every stage.</p>
           </div>
           <div class="process-grid">
-            <div class="process-step" data-reveal="up" data-delay="1">
+            <div class="process-step" data-sr="up" data-delay="1">
               <div class="step-num">1</div>
-              <h4>Consultation</h4>
-              <p>Free site visit, requirement analysis, and budget planning with our experts.</p>
+              <h4>Free Consultation</h4>
+              <p>Free site visit, requirement analysis, and budget planning with our senior experts.</p>
             </div>
-            <div class="process-step" data-reveal="up" data-delay="2">
+            <div class="process-step" data-sr="up" style="transition-delay:.1s">
               <div class="step-num">2</div>
               <h4>Design &amp; Approval</h4>
-              <p>3D visualization, structural drawings, and government approval support.</p>
+              <p>3D visualization, structural drawings, and government approval — we handle it all.</p>
             </div>
-            <div class="process-step" data-reveal="up" data-delay="3">
+            <div class="process-step" data-sr="up" style="transition-delay:.2s">
               <div class="step-num">3</div>
               <h4>Construction</h4>
-              <p>Quality-assured execution with daily progress updates and site supervision.</p>
+              <p>Quality-assured execution with daily progress updates and dedicated site supervision.</p>
             </div>
-            <div class="process-step" data-reveal="up" data-delay="4">
+            <div class="process-step" data-sr="up" style="transition-delay:.3s">
               <div class="step-num">4</div>
-              <h4>Handover</h4>
-              <p>Final inspection, documentation, and warranty registration completed.</p>
+              <h4>Handover &amp; Support</h4>
+              <p>Final inspection, documentation, warranty registration, and post-delivery support.</p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- TESTIMONIALS -->
+    <!-- ===== TESTIMONIALS ===== -->
     <section class="section">
       <div class="container section-shell">
         <div class="section-inner">
-          <div style="text-align:center;margin-bottom:1rem" data-reveal="up">
-            <span class="badge">Testimonials</span>
-            <h2 class="title">What Our Clients Say</h2>
+          <div style="text-align:center;margin-bottom:1rem" data-sr="up">
+            <span class="badge">💬 Testimonials</span>
+            <h2 class="title">What our clients say about us</h2>
+            <p class="copy" style="max-width:55ch;margin:.5rem auto 0">Hear from the companies and homeowners who trusted us with their most important projects.</p>
           </div>
-          <div class="testimonial-grid">
-            <div class="testimonial-card" data-reveal="up" data-delay="1">
-              <p class="testimonial-text">Stackly delivered our dream home 2 months ahead of schedule. The quality of materials and finishing exceeded our expectations. Highly recommended!</p>
-              <div class="testimonial-author">
-                <div class="testimonial-avatar">RK</div>
-                <div class="testimonial-info">
-                  <h4>Rajesh Kumar</h4>
-                  <span>Homeowner, Dindigul</span>
+          <div class="testimonial-enhanced">
+            <div class="testi-card" data-sr="up">
+              <div class="testi-quote">"</div>
+              <div class="testi-stars">
+                <span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span>
+              </div>
+              <p class="testi-text">Stackly delivered our dream home 2 months ahead of schedule. The quality of materials and finishing exceeded our expectations. The team was professional throughout. Highly recommended!</p>
+              <div class="testi-author">
+                <div class="testi-avatar">RK</div>
+                <div>
+                  <div class="testi-name">Rajesh Kumar</div>
+                  <div class="testi-role">Homeowner, Dindigul</div>
                 </div>
               </div>
             </div>
-            <div class="testimonial-card" data-reveal="up" data-delay="2">
-              <p class="testimonial-text">Professional team with excellent project management skills. Our commercial complex was completed with zero safety incidents and full compliance.</p>
-              <div class="testimonial-author">
-                <div class="testimonial-avatar">PS</div>
-                <div class="testimonial-info">
-                  <h4>Priya Sharma</h4>
-                  <span>CEO, TechValley Corp</span>
+            <div class="testi-card" data-sr="up" style="transition-delay:.12s">
+              <div class="testi-quote">"</div>
+              <div class="testi-stars">
+                <span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span>
+              </div>
+              <p class="testi-text">Professional team with excellent project management skills. Our commercial complex was completed with zero safety incidents and full regulatory compliance. Exceptional work.</p>
+              <div class="testi-author">
+                <div class="testi-avatar">PS</div>
+                <div>
+                  <div class="testi-name">Priya Sharma</div>
+                  <div class="testi-role">CEO, TechValley Corp</div>
                 </div>
               </div>
             </div>
-            <div class="testimonial-card" data-reveal="up" data-delay="3">
-              <p class="testimonial-text">The NH-44 bridge project was executed flawlessly. Their expertise in infrastructure is unmatched. We look forward to working with them again.</p>
-              <div class="testimonial-author">
-                <div class="testimonial-avatar">AP</div>
-                <div class="testimonial-info">
-                  <h4>Arun Prakash</h4>
-                  <span>Project Director, NHAI</span>
+            <div class="testi-card" data-sr="up" style="transition-delay:.24s">
+              <div class="testi-quote">"</div>
+              <div class="testi-stars">
+                <span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span>
+              </div>
+              <p class="testi-text">The NH-44 bridge project was executed flawlessly. Their expertise in infrastructure is unmatched. The documentation and reporting were transparent throughout. We look forward to working together again.</p>
+              <div class="testi-author">
+                <div class="testi-avatar">AP</div>
+                <div>
+                  <div class="testi-name">Arun Prakash</div>
+                  <div class="testi-role">Project Director, NHAI</div>
                 </div>
               </div>
             </div>
@@ -356,22 +893,162 @@
       </div>
     </section>
 
-    <!-- CTA -->
-    <section class="section" style="padding:2rem 0">
-      <div class="container section-shell" data-reveal="up">
-        <div class="section-inner" style="text-align:center">
-          <span class="badge">Start Your Project</span>
-          <h2 class="title" style="margin:1rem 0">Ready to Build Your Dream?</h2>
-          <p class="copy" style="max-width:50ch;margin:0 auto 1.5rem">Get a free consultation and detailed quote within 24 hours. Our team is ready to bring your vision to life.</p>
-          <div class="hero-actions" style="justify-content:center;margin:0">
-            <a href="contact.html" class="btn btn-primary">Get Free Quote</a>
-            <a href="tel:+919876543210" class="btn btn-ghost">Call: +91 98765 43210</a>
+    <!-- ===== AWARDS & RECOGNITION ===== -->
+    <section class="section">
+      <div class="container section-shell">
+        <div class="section-inner">
+          <div style="text-align:center;margin-bottom:1.5rem" data-sr="up">
+            <span class="badge">🏆 Recognition</span>
+            <h2 class="title">Awards &amp; Certifications</h2>
+            <p class="copy" style="max-width:55ch;margin:.5rem auto 0">Our commitment to excellence has been recognized by leading industry bodies and government organizations.</p>
+          </div>
+          <div class="awards-grid">
+            <div class="award-item" data-sr="scale">
+              <div class="award-icon">🥇</div>
+              <h4>Best Builder Award</h4>
+              <p>CREDAI Tamil Nadu 2024</p>
+            </div>
+            <div class="award-item" data-sr="scale" style="transition-delay:.1s">
+              <div class="award-icon">🌿</div>
+              <h4>Green Building Excellence</h4>
+              <p>IGBC Platinum Rating</p>
+            </div>
+            <div class="award-item" data-sr="scale" style="transition-delay:.2s">
+              <div class="award-icon">🔰</div>
+              <h4>Safety Leadership</h4>
+              <p>Zero Accident Record</p>
+            </div>
+            <div class="award-item" data-sr="scale" style="transition-delay:.3s">
+              <div class="award-icon">📈</div>
+              <h4>Fastest Growing</h4>
+              <p>Construction World 2023</p>
+            </div>
+          </div>
+          <!-- Certification pills -->
+          <div class="tag-cloud" style="justify-content:center;margin-top:1.5rem;" data-sr="up">
+            <span class="tag">ISO 9001:2015</span>
+            <span class="tag">LEED Platinum</span>
+            <span class="tag">OSHA Certified</span>
+            <span class="tag">BIM Enabled</span>
+            <span class="tag">CREDAI Member</span>
+            <span class="tag">IGBC Rated</span>
+            <span class="tag">Zero-Accident Site</span>
+            <span class="tag">CMDA Approved</span>
           </div>
         </div>
       </div>
     </section>
+
+    <!-- ===== LATEST NEWS / UPDATES ===== -->
+    <section class="section">
+      <div class="container section-shell">
+        <div class="section-inner">
+          <div style="text-align:center;margin-bottom:1.5rem" data-sr="up">
+            <span class="badge">📰 Latest Updates</span>
+            <h2 class="title">News &amp; Project Highlights</h2>
+          </div>
+          <div class="news-grid">
+            <div class="news-card" data-sr="up">
+              <div class="news-img">
+                <div class="news-img-inner" style="background:url('./assets/project-highrise.webp') center/cover no-repeat;"></div>
+                <span class="news-cat" style="background:rgba(77,212,255,.85);color:#071220;">🏠 Residential</span>
+              </div>
+              <div class="news-body">
+                <div class="news-date">March 2026</div>
+                <div class="news-title">Skyscape Residency Phase 2 — 80 New Units Launched in Dindigul</div>
+                <div class="news-excerpt">Following the massive success of Phase 1, we're proud to announce the launch of Phase 2 featuring 80 premium units with enhanced smart home features.</div>
+              </div>
+            </div>
+            <div class="news-card" data-sr="up" style="transition-delay:.12s">
+              <div class="news-img">
+                <div class="news-img-inner" style="background:url('./assets/project-detail.webp') center/cover no-repeat;"></div>
+                <span class="news-cat" style="background:rgba(124,92,255,.85);color:#fff;">🌉 Infrastructure</span>
+              </div>
+              <div class="news-body">
+                <div class="news-date">February 2026</div>
+                <div class="news-title">Stackly Wins ₹320 Crore NHAI Contract for Madurai Bypass</div>
+                <div class="news-excerpt">We're honored to have been awarded the prestigious National Highway Authority of India contract for the Madurai-Dindigul bypass project.</div>
+              </div>
+            </div>
+            <div class="news-card" data-sr="up" style="transition-delay:.24s">
+              <div class="news-img">
+                <div class="news-img-inner" style="background:url('./assets/pc.webp') center/cover no-repeat;"></div>
+                <span class="news-cat" style="background:rgba(0,215,163,.85);color:#071220;">🌱 Sustainability</span>
+              </div>
+              <div class="news-body">
+                <div class="news-date">January 2026</div>
+                <div class="news-title">Tech Valley IT Park Achieves LEED Platinum — A First in Coimbatore</div>
+                <div class="news-excerpt">Our Tech Valley project became the first building in Coimbatore to achieve LEED Platinum certification, setting a new benchmark for green construction.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="section">
+      <div class="container section-shell">
+        <div class="section-inner">
+          <div data-sr="up">
+            <span class="badge">❓ FAQ</span>
+            <h2 class="title">Frequently Asked Questions</h2>
+            <p class="copy" style="max-width:60ch;margin:.5rem 0 1.5rem;">Everything you need to know before starting your construction project with us.</p>
+          </div>
+          <div class="faq-list">
+            <div class="faq-item">
+              <button class="faq-question" type="button">What is the minimum budget for a residential project with Stackly?</button>
+              <div class="faq-answer"><p>Our residential projects start from ₹25 lakhs for a standard 2BHK home. The final cost depends on location, design complexity, materials chosen, and special requirements. We offer a free consultation to give you a detailed estimate.</p></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question" type="button">Do you handle government permits and approvals?</button>
+              <div class="faq-answer"><p>Yes, absolutely. Our dedicated approvals team handles CMDA/DTCP plan approvals, fire NOC, lift approvals, and all other government clearances. We have strong working relationships with local authorities across Tamil Nadu.</p></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question" type="button">What quality assurance measures do you follow?</button>
+              <div class="faq-answer"><p>We are ISO 9001:2015 certified and follow strict QC processes at every stage — from soil testing and foundation to final finishing. Materials are sourced only from trusted brands (UltraTech, TATA Steel) and batch-tested before use.</p></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question" type="button">How do you handle project delays?</button>
+              <div class="faq-answer"><p>We have an on-time delivery guarantee backed by our contract. We own our equipment fleet (no rental dependencies), use BIM planning to prevent design conflicts, and deploy dedicated site managers to ensure every milestone is met.</p></div>
+            </div>
+            <div class="faq-item">
+              <button class="faq-question" type="button">Do you offer post-construction maintenance services?</button>
+              <div class="faq-answer"><p>Yes, we offer comprehensive post-handover support including a 10-year structural warranty, AMC packages for electrical and plumbing, and a dedicated helpline for any maintenance issues.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CTA - ENHANCED ===== -->
+    <section class="section" id="cta-section" style="padding:2rem 0">
+      <div class="container" data-sr="up">
+        <div class="cta-enhanced">
+          <div class="cta-orb cta-orb-1"></div>
+          <div class="cta-orb cta-orb-2"></div>
+          <div style="position:relative;z-index:1">
+                        <span class="badge" style="margin-bottom:1rem">📍 Contact Us</span>
+            <h2 class="title" style="margin:1rem 0">Ready to Build Your Dream?</h2>
+            <p class="copy" style="max-width:55ch;margin:0 auto 1.5rem">Get a free consultation and detailed quote within 24 hours. Visit us at <strong style="color:#fff">MMR Complex, Chinna Thirupathi, Salem — 636 008</strong> or call <br><a href="tel:+919876543210" style="color:#4dd4ff;font-weight:800">+91 98765 43210</a>. Mon–Sat, 8 AM – 8 PM.</p></div>
+            <div class="highlight-strip" style="max-width:700px;margin:0 auto 2rem;">
+              <article class="highlight-item"><strong>Free</strong><span>Site Visit</span></article>
+              <article class="highlight-item"><strong>24hr</strong><span>Quote Turnaround</span></article>
+              <article class="highlight-item"><strong>0%</strong><span>Hidden Charges</span></article>
+              <article class="highlight-item"><strong>10yr</strong><span>Warranty</span></article>
+            </div>
+            <div class="hero-actions" style="justify-content:center;margin:0">
+              <a href="404.html" class="btn btn-primary">Get Free Quote →</a>
+              <a href="tel:+919876543210" class="btn btn-ghost">📞 Call: +91 98765 43210</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
   </main>
 
+  <!-- ===== FOOTER ===== -->
   <footer class="footer">
     <div class="footer-shell">
       <a href="index.html" class="footer-logo">
@@ -380,28 +1057,96 @@
       <p>&copy; 2026 Stackly Constructions. All rights reserved.</p>
       <div class="footer-links">
         <a href="index.html">Home</a>
-        <a href="about.html">About Us</a>
-        <a href="services.html">Our Services</a>
-        <a href="projects.html">Portfolio</a>
-        <a href="contact.html">Contact Us</a>
+        <a href="404.html">About Us</a>
+        <a href="404.html">Our Services</a>
+        <a href="404.html">Portfolio</a>
+        <a href="404.html">Contact Us</a>
       </div>
-      <div class="social-links">
+      <div class="social-links footer-socials-added">
         <a href="404.html" class="social-icon" aria-label="Facebook">
-          <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.6 1.6-1.6h1.7V3.8c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.4V10H8v3h2.1v8h3.4Z"/></svg>
         </a>
         <a href="404.html" class="social-icon" aria-label="Instagram">
-          <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M7.5 3h9A4.5 4.5 0 0 1 21 7.5v9a4.5 4.5 0 0 1-4.5 4.5h-9A4.5 4.5 0 0 1 3 16.5v-9A4.5 4.5 0 0 1 7.5 3Zm0 1.8A2.7 2.7 0 0 0 4.8 7.5v9a2.7 2.7 0 0 0 2.7 2.7h9a2.7 2.7 0 0 0 2.7-2.7v-9a2.7 2.7 0 0 0-2.7-2.7h-9ZM12 7.8A4.2 4.2 0 1 1 7.8 12 4.2 4.2 0 0 1 12 7.8Z"/></svg>
         </a>
         <a href="404.html" class="social-icon" aria-label="X / Twitter">
           <svg viewBox="0 0 24 24"><path d="M18.9 3H22l-6.77 7.74L23 21h-6.1l-4.78-6.25L6.66 21H3.54l7.24-8.27L1.5 3h6.25l4.32 5.71L18.9 3Zm-1.07 16.2h1.69L6.84 4.7H5.03L17.83 19.2Z"/></svg>
         </a>
-        <a href="404.html" class="social-icon" aria-label="Pinterest">
-          <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.64 19.31c-.05-1.64 0-3.61.43-5.37l1.43-6.08S9.86 8.9 9.86 8.2c0-1.15.67-2.01 1.5-2.01.71 0 1.05.53 1.05 1.16 0 .71-.45 1.78-.69 2.77-.2.84.42 1.52 1.25 1.52 1.5 0 2.66-1.58 2.66-3.86 0-2.02-1.45-3.43-3.52-3.43-2.4 0-3.81 1.8-3.81 3.65 0 .72.28 1.5.63 1.92.07.08.15.06.24l-.24.98c-.04.15-.12.18-.27.11-1-.47-1.62-1.93-1.62-3.1 0-2.53 1.84-4.86 5.31-4.86 2.79 0 4.96 1.99 4.96 4.66 0 2.78-1.75 5.02-4.19 5.02-.82 0-1.59-.43-1.85-.93l-.5 1.88c-.18.69-.67 1.54-1 2.06.75.23 1.55.35 2.38.35A10 10 0 1 0 12 2Z"/></svg>
+        <a href="404.html" class="social-icon" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24"><path d="M6.94 8.98H3.75V20h3.19V8.98ZM5.34 4A1.84 1.84 0 1 0 5.3 7.68 1.84 1.84 0 0 0 5.34 4ZM20.25 13.68c0-3.12-1.67-4.57-3.9-4.57a3.36 3.36 0 0 0-3.03 1.67h-.04v-1.8h-3.06V20h3.19v-5.45c0-1.44.27-2.84 2.06-2.84 1.76 0 1.78 1.65 1.78 2.93V20h3.2v-6.32h-.2Z"/></svg>
         </a>
       </div>
     </div>
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    // ===== SCROLL PROGRESS =====
+    (function() {
+      const bar = document.getElementById('scrollProgress');
+      const topBtn = document.getElementById('backToTop');
+      if (!bar && !topBtn) return;
+      window.addEventListener('scroll', function() {
+        const scrollTop = window.scrollY || document.documentElement.scrollTop;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const pct = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        if (bar) bar.style.width = pct + '%';
+        if (topBtn) {
+          topBtn.classList.toggle('show', scrollTop > 400);
+        }
+      }, { passive: true });
+      if (topBtn) {
+        topBtn.addEventListener('click', function() {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      }
+    })();
+
+    // ===== SCROLL REVEAL (data-sr) =====
+    (function() {
+      var els = document.querySelectorAll('[data-sr]');
+      if (!els.length) return;
+      var obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('sr-visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+      els.forEach(function(el) { obs.observe(el); });
+    })();
+
+    // ===== ANIMATED COUNTERS =====
+    (function() {
+      var counters = document.querySelectorAll('.animated-counter[data-target]');
+      if (!counters.length) return;
+      var started = false;
+      function animate(el) {
+        var target = parseInt(el.getAttribute('data-target'), 10);
+        var suffix = el.getAttribute('data-suffix') || '+';
+        var duration = 1800;
+        var start = null;
+        function step(ts) {
+          if (!start) start = ts;
+          var progress = Math.min((ts - start) / duration, 1);
+          var eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.floor(eased * target) + (progress === 1 ? suffix : '');
+          if (progress < 1) requestAnimationFrame(step);
+        }
+        requestAnimationFrame(step);
+      }
+      var obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting && !started) {
+            started = true;
+            counters.forEach(function(c) { animate(c); });
+            obs.disconnect();
+          }
+        });
+      }, { threshold: 0.2 });
+      obs.observe(counters[0]);
+    })();
+  </script>
 </body>
 </html>

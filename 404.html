@@ -9,102 +9,209 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+    }
+    .err-num {
+      font-size: clamp(5rem, 14vw, 10rem);
+      font-weight: 900;
+      background: linear-gradient(135deg, #4dd4ff, #7c5cff, #ff5fa2, #ff9a3d);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+      animation: floatBob 4s ease-in-out infinite;
+    }
+    .err-card {
+      text-align: center;
+      padding: clamp(2.5rem, 5vw, 4rem) clamp(1.2rem, 3vw, 2.5rem);
+      width: 100%;
+    }
+    .err-popular {
+      display: flex;
+      gap: .6rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 1.5rem;
+    }
+    .err-popular a {
+      padding: .45rem 1rem;
+      border-radius: 999px;
+      font-size: .85rem;
+      font-weight: 600;
+      transition: all .25s cubic-bezier(.16,1,.3,1);
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.05);
+    }
+    .err-popular a:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,.3);
+    }
+    .err-popular a:nth-child(1) { color: #4dd4ff; border-color: rgba(77,212,255,.3); }
+    .err-popular a:nth-child(1):hover { background: rgba(77,212,255,.15); }
+    .err-popular a:nth-child(2) { color: #a78fff; border-color: rgba(124,92,255,.3); }
+    .err-popular a:nth-child(2):hover { background: rgba(124,92,255,.15); }
+    .err-popular a:nth-child(3) { color: #00d7a3; border-color: rgba(0,215,163,.3); }
+    .err-popular a:nth-child(3):hover { background: rgba(0,215,163,.15); }
+    .err-popular a:nth-child(4) { color: #ff5fa2; border-color: rgba(255,95,162,.3); }
+    .err-popular a:nth-child(4):hover { background: rgba(255,95,162,.15); }
+
+    /* ===== FIXED: highlight-strip alignment ===== */
+    .err-highlight-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 2.5rem;
+      width: 100%;
+    }
+    .err-highlight-item {
+      padding: 1.2rem 1rem;
+      border-radius: 1.2rem;
+      background: linear-gradient(180deg, rgba(77,212,255,.10), rgba(124,92,255,.06));
+      border: 1px solid rgba(77,212,255,.15);
+      text-align: center;
+      transition: transform .28s cubic-bezier(.16,1,.3,1), box-shadow .28s ease, border-color .28s ease;
+    }
+    .err-highlight-item:hover {
+      transform: translateY(-5px) scale(1.03);
+      box-shadow: 0 18px 40px rgba(77,212,255,.18);
+      border-color: rgba(77,212,255,.35);
+    }
+    .err-highlight-item strong {
+      display: block;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #4dd4ff;
+      margin-bottom: .4rem;
+    }
+    .err-highlight-item span {
+      color: #b7c8da;
+      font-size: .88rem;
+      line-height: 1.4;
+    }
+
+    /* ===== FIXED: section-shell wrapper alignment ===== */
+    .err-wrapper {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .err-wrapper .section-shell {
+      width: 100%;
+      margin: 0 auto;
+    }
+    .err-wrapper .section-inner {
+      width: 100%;
+    }
+
+    /* ===== FIXED: hero-actions centering ===== */
+    .err-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .85rem;
+      margin: 1.8rem 0 2rem;
+      justify-content: center;
+    }
+
+    @media (max-width: 960px) {
+      .err-highlight-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: .8rem;
+        margin-top: 2rem;
+      }
+      .err-highlight-item {
+        padding: 1rem .8rem;
+      }
+      .err-highlight-item strong {
+        font-size: 1.3rem;
+      }
+      .err-card {
+        padding: 2rem 1.2rem;
+      }
+    }
+    @media (max-width: 640px) {
+      .err-highlight-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: .6rem;
+        margin-top: 1.5rem;
+      }
+      .err-highlight-item strong {
+        font-size: 1.1rem;
+      }
+      .err-highlight-item span {
+        font-size: .78rem;
+      }
+      .err-card {
+        padding: 1.5rem 1rem;
+      }
+      .err-num {
+        font-size: clamp(4rem, 12vw, 7rem);
+      }
+    }
+    @media (max-width: 480px) {
+      .err-highlight-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: .5rem;
+      }
+      .err-highlight-item {
+        padding: .8rem .6rem;
+        border-radius: .8rem;
+      }
+      .err-highlight-item strong {
+        font-size: 1rem;
+      }
+      .err-highlight-item span {
+        font-size: .72rem;
+      }
+      .err-actions {
+        gap: .6rem;
+      }
+      .err-actions .btn {
+        min-height: 42px;
+        padding: 0 1rem;
+        font-size: .85rem;
+      }
+    }
+    @media (max-width: 360px) {
+      .err-highlight-strip {
+        grid-template-columns: 1fr;
+        gap: .5rem;
+      }
+    }
+  </style>
 </head>
 <body>
-  <div class="loader" id="loader">
-    <div class="loader-box">
-      <div class="loader-ring" aria-hidden="true"></div>
-      <p>Building Excellence</p>
+  <div class="err-wrapper">
+    <div class="section-shell reveal">
+      <div class="section-inner err-card">
+        <div class="err-num" aria-hidden="true">404</div>
+        <span class="badge">Page Not Found</span>
+        <h1 class="title" style="margin-top:1rem;">Oops! This structure is still under construction</h1>
+        <p class="copy" style="max-width:60ch;margin:1rem auto 2rem;">The page you're looking for doesn't exist or has been moved to a new location. Our team is working on it. In the meantime, explore our completed projects or contact us directly.</p>
+
+        <div class="err-actions">
+          <a class="btn btn-primary" href="index.html">Go to Homepage</a>
+          <a class="btn btn-ghost" href="index.html#cta-section">Contact Support</a>
+        </div>
+
+        <div class="err-highlight-strip">
+          <article class="err-highlight-item"><strong>180+</strong><span>Projects Completed</span></article>
+          <article class="err-highlight-item"><strong>25+</strong><span>Years Experience</span></article>
+          <article class="err-highlight-item"><strong>24/7</strong><span>Support Available</span></article>
+          <article class="err-highlight-item"><strong>100%</strong><span>Client Satisfaction</span></article>
+        </div>
+      </div>
     </div>
   </div>
-
-  <header class="header">
-    <div class="nav-wrap nav-wrap--video">
-      <video class="nav-video" id="navVideo" autoplay muted loop playsinline aria-hidden="true">
-        <source src="./assets/nav-video.mp4" type="video/mp4" />
-      </video>
-      <div class="nav-overlay" id="navOverlay"></div>
-      <nav class="nav">
-        <a class="brand" href="index.html" aria-label="Stackly home">
-          <img src="./assets/logo-placeholder.webp" alt="Stackly logo" width="346" height="100" loading="eager" decoding="async" />
-        </a>
-        <div class="nav-links" id="navLinks">
-          <a href="index.html">Home</a>
-          <a href="about.html">About Us</a>
-          <a href="services.html">Our Services</a>
-          <a href="projects.html">Portfolio</a>
-          <a href="contact.html">Contact Us</a>
-        </div>
-        <div class="nav-right">
-          <button class="btn-login" id="openLoginBtn" type="button" aria-label="Login to your account">
-            <svg viewBox="0 0 24 24"><path d="M12 2a5 5 0 1 1 0 10A5 5 0 0 1 12 2zm0 12c5.33 0 8 2.67 8 4v2H4v-2c0-1.33 2.67-4 8-4z"/></svg>
-            <span>Login</span>
-          </button>
-          <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false">☰</button>
-        </div>
-      </nav>
-    </div>
-  </header>
-
-  <main>
-    <section class="section" style="min-height:80vh;display:grid;place-items:center;">
-      <div class="container">
-        <div class="section-shell reveal" style="text-align:center;padding:clamp(3rem,6vw,5rem) clamp(1.5rem,4vw,3rem);">
-          <div class="section-inner">
-            <div style="font-size:clamp(6rem,15vw,12rem);font-weight:900;background:linear-gradient(135deg,#4dd4ff,#ff5fa2,#ff9a3d);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:1rem;animation:floatBob 3s ease-in-out infinite;">404</div>
-            <span class="badge">Page Not Found</span>
-            <h1 class="title" style="margin-top:1rem;">Oops! This structure is still under construction</h1>
-            <p class="copy" style="max-width:60ch;margin:1rem auto 2rem;">The page you're looking for doesn't exist or has been moved to a new location. Our team is working on it. In the meantime, explore our completed projects or contact us directly.</p>
-
-            <div class="hero-actions" style="justify-content:center;">
-              <a class="btn btn-primary" href="index.html">Go to Homepage</a>
-              <a class="btn btn-secondary" href="projects.html">View Portfolio</a>
-              <a class="btn btn-ghost" href="contact.html">Contact Support</a>
-            </div>
-
-            <div style="margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(255,255,255,.08);">
-              <h3 style="margin-bottom:1rem;font-size:1.2rem;">Popular Pages</h3>
-              <div style="display:flex;gap:1rem;flex-wrap:wrap;justify-content:center;">
-                <a href="services.html" style="padding:.5rem 1rem;background:rgba(77,212,255,.1);border:1px solid rgba(77,212,255,.2);border-radius:999px;font-size:.9rem;color:#4dd4ff;">Our Services</a>
-                <a href="about.html" style="padding:.5rem 1rem;background:rgba(124,92,255,.1);border:1px solid rgba(124,92,255,.2);border-radius:999px;font-size:.9rem;color:#a78fff;">About Us</a>
-                <a href="contact.html" style="padding:.5rem 1rem;background:rgba(0,215,163,.1);border:1px solid rgba(0,215,163,.2);border-radius:999px;font-size:.9rem;color:#00d7a3;">Contact</a>
-                <a href="login.html" style="padding:.5rem 1rem;background:rgba(255,95,162,.1);border:1px solid rgba(255,95,162,.2);border-radius:999px;font-size:.9rem;color:#ff5fa2;">Client Login</a>
-              </div>
-            </div>
-
-            <div class="highlight-strip" style="margin-top:3rem;">
-              <article class="highlight-item"><strong>180+</strong><span>Projects Completed</span></article>
-              <article class="highlight-item"><strong>25+</strong><span>Years Experience</span></article>
-              <article class="highlight-item"><strong>24/7</strong><span>Support Available</span></article>
-              <article class="highlight-item"><strong>100%</strong><span>Client Satisfaction</span></article>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="footer-shell">
-      <a href="index.html" class="footer-logo">
-        <img src="./assets/logo-placeholder.webp" alt="Stackly logo" width="180" height="52" loading="lazy" />
-      </a>
-      <p>&copy; 2026 Stackly Constructions. All rights reserved.</p>
-      <div class="footer-links">
-        <a href="index.html">Home</a>
-        <a href="about.html">About Us</a>
-        <a href="services.html">Our Services</a>
-        <a href="projects.html">Portfolio</a>
-        <a href="contact.html">Contact Us</a>
-      </div>
-      <div class="social-links footer-socials-added">
-        <a href="404.html" class="social-icon" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M13.5 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.6 1.6-1.6h1.7V3.8c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.4V10H8v3h2.1v8h3.4Z"/></svg></a>
-        <a href="404.html" class="social-icon" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M7.5 3h9A4.5 4.5 0 0 1 21 7.5v9a4.5 4.5 0 0 1-4.5 4.5h-9A4.5 4.5 0 0 1 3 16.5v-9A4.5 4.5 0 0 1 7.5 3Zm0 1.8A2.7 2.7 0 0 0 4.8 7.5v9a2.7 2.7 0 0 0 2.7 2.7h9a2.7 2.7 0 0 0 2.7-2.7v-9a2.7 2.7 0 0 0-2.7-2.7h-9ZM12 7.8A4.2 4.2 0 1 1 7.8 12 4.2 4.2 0 0 1 12 7.8Z"/></svg></a>
-        <a href="404.html" class="social-icon" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.9 3H22l-6.77 7.74L23 21h-6.1l-4.78-6.25L6.66 21H3.54l7.24-8.27L1.5 3h6.25l4.32 5.71L18.9 3Zm-1.07 16.2h1.69L6.84 4.7H5.03L17.83 19.2Z"/></svg></a>
-        <a href="404.html" class="social-icon" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M6.94 8.98H3.75V20h3.19V8.98ZM5.34 4A1.84 1.84 0 1 0 5.3 7.68 1.84 1.84 0 0 0 5.34 4ZM20.25 13.68c0-3.12-1.67-4.57-3.9-4.57a3.36 3.36 0 0 0-3.03 1.67h-.04v-1.8h-3.06V20h3.19v-5.45c0-1.44.27-2.84 2.06-2.84 1.76 0 1.78 1.65 1.78 2.93V20h3.2v-6.32h-.2Z"/></svg></a>
-      </div>
-    </div>
-  </footer>
 
   <script src="script.js"></script>
 </body>
